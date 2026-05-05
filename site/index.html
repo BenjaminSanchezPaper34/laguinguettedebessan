@@ -311,6 +311,10 @@
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
     }
+    .nav-scrolled .nav-logo {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
 
     /* ---- Hero video ---- */
     .hero-video-wrap {
@@ -481,9 +485,9 @@
   <header>
   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 pb-8" aria-label="Navigation principale" style="background: transparent;">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
-      <!-- Logo -->
-      <a href="#hero" class="flex-shrink-0">
-        <img src="images/logo-laguinguette.svg" alt="La Guinguette de Bessan" class="h-10 lg:h-12 w-auto"/>
+      <!-- Logo bannière (visible uniquement après le hero) -->
+      <a href="#hero" class="flex-shrink-0 nav-logo opacity-0 transition-opacity duration-500 pointer-events-none" id="navLogo">
+        <img src="images/logo-banniere.svg" alt="La Guinguette de Bessan" class="h-9 lg:h-10 w-auto"/>
       </a>
       <!-- Desktop links -->
       <div class="hidden lg:flex items-center gap-8">
@@ -1532,17 +1536,13 @@
         }
 
 
-        // ---- Nav scroll effect ---- //
+        // ---- Nav scroll effect (déclenchement après le hero, ~85vh) ---- //
         ScrollTrigger.create({
-          start: 'top -80',
-          onUpdate: (self) => {
-            const navbar = document.getElementById('navbar');
-            if (self.direction === 1 && self.scroll() > 80) {
-              navbar.classList.add('nav-scrolled');
-            } else if (self.scroll() <= 80) {
-              navbar.classList.remove('nav-scrolled');
-            }
-          }
+          trigger: '#hero',
+          start: 'bottom 85%',
+          end: 'bottom top',
+          onEnter: () => document.getElementById('navbar').classList.add('nav-scrolled'),
+          onLeaveBack: () => document.getElementById('navbar').classList.remove('nav-scrolled'),
         });
 
 
