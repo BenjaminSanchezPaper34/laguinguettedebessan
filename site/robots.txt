@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /phone/
+
+Sitemap: https://guinguette-bessan.fr/sitemap.xml
