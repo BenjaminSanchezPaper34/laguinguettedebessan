@@ -434,36 +434,75 @@
     .skiptranslate { display: none !important; }
     #google_translate_element { display: none !important; }
 
-    /* ---- Galerie ---- */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+    /* ---- Galerie marquee infini ---- */
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+    }
+    .marquee-track {
+      display: flex;
       gap: 12px;
+      width: max-content;
+      will-change: transform;
     }
     @media (min-width: 768px) {
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .marquee-track { gap: 16px; }
     }
-    @media (min-width: 1280px) {
-      .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .marquee-left {
+      animation: marqueeLeft 90s linear infinite;
     }
-    .gallery-item {
-      aspect-ratio: 1 / 1;
+    .marquee-right {
+      animation: marqueeRight 100s linear infinite;
+    }
+    @keyframes marqueeLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-50% - 6px)); }
+    }
+    @keyframes marqueeRight {
+      from { transform: translateX(calc(-50% - 6px)); }
+      to { transform: translateX(0); }
+    }
+    @media (min-width: 768px) {
+      @keyframes marqueeLeft {
+        from { transform: translateX(0); }
+        to { transform: translateX(calc(-50% - 8px)); }
+      }
+      @keyframes marqueeRight {
+        from { transform: translateX(calc(-50% - 8px)); }
+        to { transform: translateX(0); }
+      }
+    }
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+    .marquee-item {
+      flex-shrink: 0;
+      width: 220px;
+      height: 220px;
       border-radius: 12px;
       overflow: hidden;
       background: rgba(255, 239, 214, 0.03);
     }
-    .gallery-item img {
+    @media (min-width: 768px) {
+      .marquee-item { width: 280px; height: 280px; }
+    }
+    @media (min-width: 1280px) {
+      .marquee-item { width: 320px; height: 320px; }
+    }
+    .marquee-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .gallery-item:hover img {
-      transform: scale(1.04);
+    .marquee-item:hover img {
+      transform: scale(1.05);
     }
-    .gallery-item.gallery-hidden {
-      display: none;
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
     }
 
     /* ---- Progress bar ---- */
@@ -1348,63 +1387,102 @@
   <!-- GALERIE                                      -->
   <!-- ============================================ -->
   <section id="galerie" class="relative py-24 md:py-32 lg:py-40 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="text-center mb-16 reveal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
+      <div class="text-center reveal">
         <p class="text-sm font-light tracking-[4px] uppercase text-creme/40 mb-4">En images</p>
         <h2 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold text-creme" style="letter-spacing: -2px;">
           La Guinguette
         </h2>
         <div class="section-divider mx-auto mt-8"></div>
       </div>
+    </div>
 
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- 10 premières visibles -->
-        <div class="gallery-item reveal"><img src="photos/A7V1.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V2.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V3.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V4.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V6.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V7.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V8.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V9.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V10.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V11.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <!-- Cachées par défaut -->
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V12.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V13.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V14.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V15.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V16.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V18.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V19.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V20.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V21.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V22.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V23.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V24.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V25.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V26.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V27.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V28.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V29.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V30.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V31.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V32.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V33.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V34.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V35.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V36.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V37.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V38.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item gallery-hidden"><img src="photos/A7V39.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+    <!-- Ligne 1 : défile vers la gauche -->
+    <div class="marquee">
+      <div class="marquee-track marquee-left">
+        <!-- Set A -->
+        <div class="marquee-item"><img src="photos/A7V1.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V2.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V3.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V4.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V6.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V7.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V8.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V9.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V10.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V11.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V12.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V13.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V14.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V15.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V16.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V18.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V19.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V20.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V21.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <!-- Set B (duplicata pour boucle sans saut) -->
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V1.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V2.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V3.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V4.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V6.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V7.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V8.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V9.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V10.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V11.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V12.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V13.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V14.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V15.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V16.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V18.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V19.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V20.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V21.webp" alt="" loading="lazy"/></div>
       </div>
+    </div>
 
-      <!-- CTA voir plus -->
-      <div class="text-center mt-12 reveal" id="galleryMoreWrap">
-        <button id="galleryMore" class="px-8 py-3.5 border border-creme/30 text-creme rounded-full font-medium hover:bg-creme/10 transition-all duration-300 text-sm tracking-wider uppercase">
-          Voir plus de photos
-          <span class="text-creme/40 ml-2 normal-case tracking-normal">(28)</span>
-        </button>
+    <!-- Ligne 2 : défile vers la droite (sens opposé) -->
+    <div class="marquee mt-4">
+      <div class="marquee-track marquee-right">
+        <div class="marquee-item"><img src="photos/A7V22.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V23.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V24.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V25.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V26.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V27.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V28.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V29.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V30.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V31.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V32.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V33.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V34.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V35.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V36.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V37.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V38.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="marquee-item"><img src="photos/A7V39.webp" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <!-- Set B duplicata -->
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V22.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V23.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V24.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V25.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V26.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V27.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V28.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V29.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V30.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V31.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V32.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V33.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V34.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V35.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V36.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V37.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V38.webp" alt="" loading="lazy"/></div>
+        <div class="marquee-item" aria-hidden="true"><img src="photos/A7V39.webp" alt="" loading="lazy"/></div>
       </div>
     </div>
   </section>
@@ -1539,21 +1617,6 @@
           if (navbar) navbar.style.top = seasonBanner.offsetHeight + 'px';
         }
         if (seasonHero) seasonHero.classList.remove('hidden');
-      }
-
-      // ---- Galerie : voir plus ---- //
-      const galleryMore = document.getElementById('galleryMore');
-      if (galleryMore) {
-        galleryMore.addEventListener('click', () => {
-          document.querySelectorAll('.gallery-item.gallery-hidden').forEach(el => {
-            el.classList.remove('gallery-hidden');
-          });
-          document.getElementById('galleryMoreWrap').style.display = 'none';
-          // Refresh ScrollTrigger so newly visible items animate properly
-          if (typeof ScrollTrigger !== 'undefined') {
-            setTimeout(() => ScrollTrigger.refresh(), 100);
-          }
-        });
       }
 
       // ---- Language switcher ---- //
