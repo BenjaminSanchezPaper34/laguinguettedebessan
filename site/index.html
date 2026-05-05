@@ -760,7 +760,7 @@
       </div>
 
       <!-- Category navigation -->
-      <div class="sticky top-16 lg:top-20 z-30 py-4 -mx-6 px-6 overflow-x-auto" id="menuNav" style="background: transparent;">
+      <div class="sticky top-24 lg:top-28 z-30 py-3 -mx-6 px-6 overflow-x-auto" id="menuNav" style="background: transparent;">
         <div class="flex gap-2 justify-start lg:justify-center min-w-max">
           <button class="cat-btn active" data-target="cat-partager">Partager</button>
           <button class="cat-btn" data-target="cat-mer">Mer</button>
@@ -1714,6 +1714,7 @@
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smooth: true,
           });
+          window.lenis = lenis; // accessible globalement pour les boutons de catégorie
 
           lenis.on('scroll', ScrollTrigger.update);
           gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -1724,7 +1725,7 @@
             anchor.addEventListener('click', (e) => {
               e.preventDefault();
               const target = document.querySelector(anchor.getAttribute('href'));
-              if (target) lenis.scrollTo(target, { offset: -80 });
+              if (target) lenis.scrollTo(target, { offset: -120 });
             });
           });
         }
@@ -1832,10 +1833,12 @@
             btn.classList.add('active');
             const target = document.getElementById(btn.dataset.target);
             if (target) {
-              const lenis = window.lenis;
-              const yOffset = -120;
-              const y = target.getBoundingClientRect().top + window.scrollY + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
+              if (window.lenis) {
+                window.lenis.scrollTo(target, { offset: -140 });
+              } else {
+                const y = target.getBoundingClientRect().top + window.scrollY - 140;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+              }
             }
           });
         });
