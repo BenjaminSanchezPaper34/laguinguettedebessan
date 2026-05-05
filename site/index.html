@@ -456,6 +456,9 @@
     .gallery-item:hover img {
       transform: scale(1.04);
     }
+    .gallery-item.gallery-hidden {
+      display: none;
+    }
 
     /* ---- Progress bar ---- */
     .progress-bar {
@@ -651,6 +654,12 @@
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <!-- Photo du lieu -->
+        <div class="reveal">
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-creme/10">
+            <img src="photos/A7V17.jpeg" alt="La terrasse de La Guinguette de Bessan au bord de l'Hérault" class="w-full h-full object-cover" loading="lazy"/>
+          </div>
+        </div>
         <!-- Text -->
         <div>
           <p class="text-lg md:text-xl text-creme/70 leading-relaxed font-light mb-6 rvl_line">
@@ -672,12 +681,6 @@
             <span class="px-4 py-2 border border-creme/10 rounded-full">Terrasse ombragée</span>
             <span class="px-4 py-2 border border-creme/10 rounded-full">Bord de rivière</span>
             <span class="px-4 py-2 border border-creme/10 rounded-full">Produits locaux</span>
-          </div>
-        </div>
-        <!-- Photo du lieu -->
-        <div class="reveal">
-          <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-creme/10">
-            <img src="photos/A7V5.jpeg" alt="La terrasse de La Guinguette de Bessan au bord de l'Hérault" class="w-full h-full object-cover" loading="lazy"/>
           </div>
         </div>
       </div>
@@ -1339,7 +1342,8 @@
         <div class="section-divider mx-auto mt-8"></div>
       </div>
 
-      <div class="gallery-grid">
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- 10 premières visibles -->
         <div class="gallery-item reveal"><img src="photos/A7V1.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
         <div class="gallery-item reveal"><img src="photos/A7V2.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
         <div class="gallery-item reveal"><img src="photos/A7V3.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
@@ -1350,34 +1354,42 @@
         <div class="gallery-item reveal"><img src="photos/A7V9.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
         <div class="gallery-item reveal"><img src="photos/A7V10.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
         <div class="gallery-item reveal"><img src="photos/A7V11.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V12.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V13.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V14.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V15.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V16.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V17.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V18.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V19.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V20.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V21.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V22.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V23.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V24.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V25.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V26.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V27.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V28.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V29.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V30.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V31.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V32.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V33.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V34.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V35.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V36.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V37.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V38.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
-        <div class="gallery-item reveal"><img src="photos/A7V39.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <!-- Cachées par défaut -->
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V12.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V13.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V14.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V15.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V16.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V18.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V19.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V20.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V21.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V22.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V23.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V24.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V25.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V26.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V27.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V28.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V29.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V30.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V31.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V32.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V33.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V34.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V35.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V36.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V37.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V38.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+        <div class="gallery-item gallery-hidden"><img src="photos/A7V39.jpeg" alt="La Guinguette de Bessan" loading="lazy"/></div>
+      </div>
+
+      <!-- CTA voir plus -->
+      <div class="text-center mt-12 reveal" id="galleryMoreWrap">
+        <button id="galleryMore" class="px-8 py-3.5 border border-creme/30 text-creme rounded-full font-medium hover:bg-creme/10 transition-all duration-300 text-sm tracking-wider uppercase">
+          Voir plus de photos
+          <span class="text-creme/40 ml-2 normal-case tracking-normal">(28)</span>
+        </button>
       </div>
     </div>
   </section>
@@ -1499,6 +1511,21 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+
+      // ---- Galerie : voir plus ---- //
+      const galleryMore = document.getElementById('galleryMore');
+      if (galleryMore) {
+        galleryMore.addEventListener('click', () => {
+          document.querySelectorAll('.gallery-item.gallery-hidden').forEach(el => {
+            el.classList.remove('gallery-hidden');
+          });
+          document.getElementById('galleryMoreWrap').style.display = 'none';
+          // Refresh ScrollTrigger so newly visible items animate properly
+          if (typeof ScrollTrigger !== 'undefined') {
+            setTimeout(() => ScrollTrigger.refresh(), 100);
+          }
+        });
+      }
 
       // ---- Language switcher ---- //
       const langToggle = document.getElementById('langToggle');
