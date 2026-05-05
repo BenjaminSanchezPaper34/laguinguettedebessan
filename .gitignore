@@ -15,14 +15,14 @@ npm-debug.log*
 # Logs
 *.log
 
-# Fichiers de travail Paper34 (hors déploiement web)
-BAT/
-DEVIS.pdf
-IMAGES/
-REÇUS/
+# Fichiers de travail Paper34 (hors déploiement web) — chemins racine uniquement
+/BAT/
+/DEVIS.pdf
+/IMAGES/
+/REÇUS/
+/STORIES-*
 *.indd
 *.psd
-STORIES-*
 
 # Claude
 .claude/
