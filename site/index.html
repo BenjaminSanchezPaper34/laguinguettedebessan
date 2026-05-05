@@ -556,7 +556,7 @@
   <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
   <!-- Bandeau ouverture saison (auto-masqué après la date) -->
-  <div id="seasonBanner" class="fixed top-0 left-0 w-full z-[60] bg-rouge text-creme text-center text-xs md:text-sm font-medium py-2 px-4 tracking-wider hidden">
+  <div id="seasonBanner" class="fixed top-0 left-0 w-full z-[60] bg-creme text-vert text-center text-xs md:text-sm font-medium py-2 px-4 tracking-wider hidden">
     <span class="uppercase">Ouverture de la saison</span> &mdash; le 14 mai 2026
   </div>
 
@@ -668,10 +668,6 @@
       </p>
       <p class="text-sm md:text-base text-creme/50 font-light tracking-widest uppercase hero-location">
         Bessan &mdash; 34550
-      </p>
-      <!-- Mention saison (auto-masquée après le 14 mai 2026) -->
-      <p class="mt-6 text-sm md:text-base text-creme/80 italic font-playfair hero-cta hidden" id="seasonHero">
-        Ouverture de la saison le <span class="font-semibold">14 mai 2026</span>
       </p>
       <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center hero-cta">
         <a href="#carte" class="px-8 py-3.5 bg-creme text-vert font-semibold rounded-full hover:bg-creme-dark transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
@@ -1607,16 +1603,11 @@
 
       // ---- Bandeau ouverture saison (auto-masqué le 14 mai 2026) ---- //
       const seasonBanner = document.getElementById('seasonBanner');
-      const seasonHero = document.getElementById('seasonHero');
       const navbar = document.getElementById('navbar');
       const openingDate = new Date('2026-05-14T00:00:00');
-      const now = new Date();
-      if (now < openingDate) {
-        if (seasonBanner) {
-          seasonBanner.classList.remove('hidden');
-          if (navbar) navbar.style.top = seasonBanner.offsetHeight + 'px';
-        }
-        if (seasonHero) seasonHero.classList.remove('hidden');
+      if (seasonBanner && new Date() < openingDate) {
+        seasonBanner.classList.remove('hidden');
+        if (navbar) navbar.style.top = seasonBanner.offsetHeight + 'px';
       }
 
       // ---- Language switcher ---- //
