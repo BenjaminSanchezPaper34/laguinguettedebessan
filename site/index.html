@@ -1849,9 +1849,22 @@
         });
 
         function updateActiveBtn(id) {
+          let activeBtn = null;
           catBtns.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.target === id);
+            const isActive = btn.dataset.target === id;
+            btn.classList.toggle('active', isActive);
+            if (isActive) activeBtn = btn;
           });
+          // Centre le bouton actif dans la barre scrollable horizontalement (utile sur mobile)
+          if (activeBtn) {
+            const container = activeBtn.closest('#menuNav');
+            if (container && container.scrollWidth > container.clientWidth) {
+              const btnRect = activeBtn.getBoundingClientRect();
+              const containerRect = container.getBoundingClientRect();
+              const target = container.scrollLeft + (btnRect.left - containerRect.left) - (containerRect.width - btnRect.width) / 2;
+              container.scrollTo({ left: target, behavior: 'smooth' });
+            }
+          }
         }
 
 
