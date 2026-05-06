@@ -22,6 +22,8 @@ npm-debug.log*
 /REÇUS/
 /STORIES-*
 *.indd
+*.idlk
+~*.idlk
 *.psd
 
 # Claude
