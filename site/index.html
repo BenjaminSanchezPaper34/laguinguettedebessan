@@ -436,6 +436,14 @@
       border-color: #FFEFD6;
     }
 
+    /* Fade lateral sur la barre de catégories scrollable (mobile/tablette) */
+    .menu-nav-fade {
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+      scrollbar-width: none;
+    }
+    .menu-nav-fade::-webkit-scrollbar { display: none; }
+
     /* ---- Menu item hover ---- */
     .menu-item {
       transition: background 0.3s ease;
@@ -798,7 +806,7 @@
       </div>
 
       <!-- Category navigation -->
-      <div class="sticky top-24 lg:top-28 z-30 py-3 -mx-6 px-6 overflow-x-auto" id="menuNav" style="background: transparent;">
+      <div class="sticky top-24 lg:top-28 z-30 py-3 -mx-6 px-6 overflow-x-auto menu-nav-fade" id="menuNav" style="background: transparent;">
         <div class="flex gap-2 justify-start lg:justify-center min-w-max">
           <button class="cat-btn active" data-target="cat-tapas">Tapas</button>
           <button class="cat-btn" data-target="cat-entrees">Entrées</button>
