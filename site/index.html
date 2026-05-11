@@ -128,6 +128,32 @@
             {"@type": "MenuItem", "name": "Entremet royal chocolat", "description": "Signature Maison Jo", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "EUR"}},
             {"@type": "MenuItem", "name": "Tarte passion mangue", "description": "Signature Maison Jo", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "EUR"}}
           ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Cocktails",
+          "hasMenuItem": [
+            {"@type": "MenuItem", "name": "Mojito", "description": "Rhum, citron vert, menthe fraîche, cassonade, Perrier", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Caïpirinha", "description": "Cachaça, citron vert, cassonade", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Piña Colada", "description": "Rhum ambré, rhum blanc, jus d'ananas, purée de coco", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Espresso Martini", "description": "Vodka, Kahlua, sirop de canne, Baileys, expresso", "offers": {"@type": "Offer", "price": "11.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Basil Guinguette", "description": "Création maison - Vodka, framboise, cranberry, citron vert, basilic", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Rosé Guinguette", "description": "Création maison - Gin, Martini blanc, fraise, citron vert, tonic", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Virgin Mojito", "description": "Mocktail sans alcool - Citron vert, cassonade, menthe, Perrier", "offers": {"@type": "Offer", "price": "6.50", "priceCurrency": "EUR"}}
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Boissons",
+          "hasMenuItem": [
+            {"@type": "MenuItem", "name": "Sodas", "description": "Pepsi, Pepsi Max, Orangina, Oasis, Ice Tea, Tonic, 7up, Limonade, Diabolo", "offers": {"@type": "Offer", "price": "3.80", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Jus de fruits Granini 20cl", "offers": {"@type": "Offer", "price": "3.70", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Bavaria pression 25cl", "offers": {"@type": "Offer", "price": "3.80", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Picon pression 25cl", "offers": {"@type": "Offer", "price": "4.50", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Espresso", "offers": {"@type": "Offer", "price": "2.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Aperitivo Spritz", "offers": {"@type": "Offer", "price": "9.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Hugo Spritz", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "EUR"}}
+          ]
         }
       ]
     },
@@ -780,6 +806,9 @@
           <button class="cat-btn" data-target="cat-terre">Terre</button>
           <button class="cat-btn" data-target="cat-enfant">Enfant</button>
           <button class="cat-btn" data-target="cat-desserts">Desserts</button>
+          <button class="cat-btn" data-target="cat-glaces">Glaces</button>
+          <button class="cat-btn" data-target="cat-boissons">Boissons</button>
+          <button class="cat-btn" data-target="cat-cocktails">Cocktails</button>
           <button class="cat-btn" data-target="cat-rouges">Vins</button>
         </div>
       </div>
@@ -1043,9 +1072,24 @@
           <p class="text-creme/70 font-light whitespace-nowrap">10,00€</p>
         </div>
 
-        <!-- Crêpes row -->
+        <!-- Crêpes -->
         <div class="mt-8 p-4 rounded-xl bg-creme/[0.03] border border-creme/5 reveal">
           <p class="text-xs uppercase tracking-widest text-creme/30 mb-3">Crêpes</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
+            <div class="flex justify-between text-creme/50"><span>Sucre</span><span>3,50€</span></div>
+            <div class="flex justify-between text-creme/50"><span>Confiture</span><span>4,00€</span></div>
+            <div class="flex justify-between text-creme/50"><span>Nutella</span><span>4,50€</span></div>
+            <div class="flex justify-between text-creme/50"><span>Nutella &amp; banane</span><span>5,00€</span></div>
+            <div class="flex justify-between text-creme/50"><span>Grand-Marnier</span><span>5,50€</span></div>
+          </div>
+        </div>
+
+        <!-- Gaufres -->
+        <div class="mt-4 p-4 rounded-xl bg-creme/[0.03] border border-creme/5 reveal">
+          <div class="flex items-baseline justify-between mb-3">
+            <p class="text-xs uppercase tracking-widest text-creme/30">Gaufres</p>
+            <p class="text-xs text-creme/40 italic">Uniquement de 15h à 18h</p>
+          </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
             <div class="flex justify-between text-creme/50"><span>Sucre</span><span>3,50€</span></div>
             <div class="flex justify-between text-creme/50"><span>Confiture</span><span>4,00€</span></div>
@@ -1155,6 +1199,428 @@
           </div>
           <p class="text-xs text-creme/25">Parfums : vanille, chocolat, fraise, pistache, café, rhum-raisin, citron, menthe-chocolat, noix de coco, fruit de la passion, marron, mangue, caramel beurre salé.</p>
           <p class="text-xs text-creme/25 mt-1">Supplément chantilly +1,00€</p>
+        </div>
+
+        <!-- Glaces à emporter -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-6 reveal">Glaces à emporter</h4>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Nuii</p>
+            <p class="text-sm text-creme/40 mt-1">Macadamia, vanille, mangue, pécan du Texas.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">3,50€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Extrême</p>
+            <p class="text-sm text-creme/40 mt-1">Vanille, duo choco, caramel salé, fraise et crème.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">3,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Gâteau</p>
+            <p class="text-sm text-creme/40 mt-1">Kitkat, Oréo, Lion, Spéculoos, Smarties.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">3,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Exotique</p>
+            <p class="text-sm text-creme/40 mt-1">Fruit de la passion et mangue.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">3,50€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Pirulo</p>
+            <p class="text-sm text-creme/40 mt-1">Tropical, pastèque, cola.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">2,50€</p>
+        </div>
+      </div>
+
+      <!-- ---- BOISSONS ---- -->
+      <div id="cat-boissons" class="menu-category mt-16">
+        <h3 class="font-playfair text-2xl md:text-3xl text-creme mb-8 reveal">Boissons</h3>
+
+        <!-- SOFTS -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-8 mb-4 reveal">Softs</h4>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Sodas</p>
+            <p class="text-sm text-creme/40 mt-1">Pepsi, Pepsi Max, Orangina, Oasis, Ice Tea, Tonic, 7up, Limonade, Diabolo.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">3,80€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Jus de fruits Granini</p>
+            <p class="text-sm text-creme/40 mt-1">Orange, ananas, pomme, tomate, abricot, ACE.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">20cl 3,70€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Sirop</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">2,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Evian</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">50cl 4,60€ &middot; 1L 6,60€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Badoit</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">33cl 3,80€ &middot; 50cl 5,10€ &middot; 1L 6,60€</p>
+        </div>
+
+        <!-- BOISSONS CHAUDES -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-4 reveal">Boissons Chaudes</h4>
+
+        <div class="mt-2 p-4 rounded-xl bg-creme/[0.03] border border-creme/5 reveal">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+            <div class="flex justify-between text-creme/70"><span>Espresso</span><span>2,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Double café</span><span>2,90€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Café allongé</span><span>2,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Grand crème</span><span>3,10€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Noisette</span><span>2,10€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Cappuccino</span><span>3,10€</span></div>
+          </div>
+        </div>
+
+        <!-- BIÈRES -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-4 reveal">Bières</h4>
+        <p class="text-xs text-creme/30 tracking-widest uppercase mb-4 reveal">Pressions</p>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Bavaria</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">25cl 3,80€ &middot; 50cl 7,50€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Picon</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">25cl 4,50€ &middot; 50cl 8,50€</p>
+        </div>
+
+        <p class="text-xs text-creme/30 tracking-widest uppercase mt-6 mb-4 reveal">Bouteilles</p>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Desperados</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">33cl 6,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Chouffe, Chouffe cherry</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">33cl 7,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Vedett IPA, Super 8 blanche</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">33cl 7,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Levrette cerise</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">25cl 7,00€</p>
+        </div>
+
+        <p class="text-xs text-creme/30 tracking-widest uppercase mt-6 mb-4 reveal">Sans alcool</p>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Bavaria blanche, Bavaria IPA</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">33cl 6,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Liefmans rouge</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">25cl 6,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Paulaner citron, Bitburger blonde</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">33cl 6,00€</p>
+        </div>
+
+        <!-- APÉRITIFS -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-4 reveal">Apéritifs</h4>
+
+        <div class="mt-2 p-4 rounded-xl bg-creme/[0.03] border border-creme/5 reveal">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+            <div class="flex justify-between text-creme/70"><span>Ricard</span><span>3,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Martini blanc ou rouge</span><span>5,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Kir, Bessanais</span><span>4,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Muscat</span><span>4,50€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Porto rouge</span><span>5,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Sangria blanche</span><span>6,00€</span></div>
+          </div>
+        </div>
+
+        <!-- LES SPRITZ -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-4 reveal">Les Spritz</h4>
+
+        <div class="mt-2 p-4 rounded-xl bg-creme/[0.03] border border-creme/5 reveal">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-sm">
+            <div class="flex justify-between text-creme/70"><span>Aperitivo Spritz</span><span>9,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Solare Spritz</span><span>9,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Hugo Spritz</span><span>10,00€</span></div>
+          </div>
+        </div>
+
+        <!-- ALCOOLS -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-4 reveal">Alcools</h4>
+        <p class="text-xs text-creme/30 tracking-widest uppercase mb-4 reveal">Rhums</p>
+
+        <div class="mt-2 p-4 rounded-xl bg-creme/[0.03] border border-creme/5 reveal">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+            <div class="flex justify-between text-creme/70"><span>Kraken</span><span>12,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Diplomatico</span><span>12,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Don Papa</span><span>12,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Zacapa</span><span>14,00€</span></div>
+          </div>
+        </div>
+
+        <p class="text-xs text-creme/30 tracking-widest uppercase mt-6 mb-4 reveal">Gins</p>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Bombay Sapphire + Fever tree</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">12,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <p class="font-medium text-creme">Tanqueray ou Hendrick's + Fever tree</p>
+          <p class="text-creme/70 font-light whitespace-nowrap">12,00€</p>
+        </div>
+
+        <!-- DIGESTIFS -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-4 reveal">Digestifs</h4>
+
+        <div class="mt-2 p-4 rounded-xl bg-creme/[0.03] border border-creme/5 reveal">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+            <div class="flex justify-between text-creme/70"><span>Get 27, Get 31</span><span>7,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Baileys</span><span>7,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Manzana</span><span>7,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Coq Ô Rico (menthe ou citron)</span><span>7,00€</span></div>
+            <div class="flex justify-between text-creme/70"><span>Limoncello</span><span>7,00€</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- COCKTAILS ---- -->
+      <div id="cat-cocktails" class="menu-category mt-16">
+        <h3 class="font-playfair text-2xl md:text-3xl text-creme mb-8 reveal">Cocktails</h3>
+
+        <!-- LES INCONTOURNABLES -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-4 mb-6 reveal">Les Incontournables</h4>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Mojito</p>
+            <p class="text-sm text-creme/40 mt-1">Rhum, citron vert, menthe fraîche, cassonade, Perrier.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">10,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Mojito fraise</p>
+            <p class="text-sm text-creme/40 mt-1">Rhum, citron vert, purée de fraise, menthe fraîche, Perrier.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Mojito passion</p>
+            <p class="text-sm text-creme/40 mt-1">Rhum, citron vert, purée de passion, menthe fraîche, Perrier.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Caïpirinha</p>
+            <p class="text-sm text-creme/40 mt-1">Cachaça, citron vert, cassonade.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">10,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Caïpirinha fraise</p>
+            <p class="text-sm text-creme/40 mt-1">Cachaça, citron vert, purée de fraise.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Caïpirinha passion</p>
+            <p class="text-sm text-creme/40 mt-1">Cachaça, citron vert, purée de passion.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Moscow Mule</p>
+            <p class="text-sm text-creme/40 mt-1">Vodka, Ginger beer, citron vert.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">London Mule</p>
+            <p class="text-sm text-creme/40 mt-1">Gin, Ginger beer, citron vert.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Jamaican Mule</p>
+            <p class="text-sm text-creme/40 mt-1">Rhum, Ginger beer, citron vert.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Piña Colada</p>
+            <p class="text-sm text-creme/40 mt-1">Rhum ambré, rhum blanc, jus d'ananas, purée de coco.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">10,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Porn Star Martini</p>
+            <p class="text-sm text-creme/40 mt-1">Vodka, liqueur de vanille, jus de passion, purée de passion.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Espresso Martini</p>
+            <p class="text-sm text-creme/40 mt-1">Vodka, liqueur de café (Kahlua), sirop de sucre de canne, Baileys, expresso.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">11,00€</p>
+        </div>
+
+        <!-- FRAIS & ESTIVAUX -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-6 reveal">Frais &amp; Estivaux</h4>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Sex on the River</p>
+            <p class="text-sm text-creme/40 mt-1">Vodka, crème de pêche, jus d'ananas, jus d'orange, sirop de grenadine.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">10,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Margarita</p>
+            <p class="text-sm text-creme/40 mt-1">Tequila, Cointreau, jus de citron vert, sucre.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">10,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Daïquiri</p>
+            <p class="text-sm text-creme/40 mt-1">Rhum blanc, jus de citron vert, sucre.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">10,00€</p>
+        </div>
+
+        <!-- CRÉATIONS -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-6 reveal">Créations Maison</h4>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Basil Guinguette</p>
+            <p class="text-sm text-creme/40 mt-1">Vodka, liqueur de framboise, jus de cranberry, jus de citron vert, basilic frais.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">12,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Love Guinguette</p>
+            <p class="text-sm text-creme/40 mt-1">Vodka, jus de cranberry, purée de fraise, menthe fraîche.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">12,00€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Rosé Guinguette</p>
+            <p class="text-sm text-creme/40 mt-1">Gin, Martini blanc, purée de fraise, jus de citron vert, tonic.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">12,00€</p>
+        </div>
+
+        <!-- MOCKTAILS -->
+        <h4 class="font-playfair text-xl text-creme/90 mt-12 mb-2 reveal">Mocktails</h4>
+        <p class="text-xs text-creme/30 tracking-widest uppercase mb-6 reveal">Sans alcool</p>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Virgin Mojito</p>
+            <p class="text-sm text-creme/40 mt-1">Classique, fraise ou passion. Citron vert, cassonade, menthe fraîche, Perrier.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">6,50€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Virgin Piña Colada</p>
+            <p class="text-sm text-creme/40 mt-1">Jus d'ananas, purée de coco.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">6,50€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Virgin Mule</p>
+            <p class="text-sm text-creme/40 mt-1">Citron vert, gingembre frais, ginger beer.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">6,50€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Bora Bora</p>
+            <p class="text-sm text-creme/40 mt-1">Jus d'orange, jus de fraise, purée de passion.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">6,50€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">Guinguette Caraïbo</p>
+            <p class="text-sm text-creme/40 mt-1">Jus de passion, jus de mangue, jus de citron.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">6,50€</p>
+        </div>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">No Sex on the River</p>
+            <p class="text-sm text-creme/40 mt-1">Crème de pêche, jus d'ananas, jus d'orange, sirop de grenadine.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">6,50€</p>
         </div>
       </div>
 
