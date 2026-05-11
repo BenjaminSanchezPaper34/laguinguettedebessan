@@ -21,6 +21,9 @@ npm-debug.log*
 /IMAGES/
 /REÇUS/
 /STORIES-*
+/POST-*
+/Gabarit*
+/CARTE*.pdf
 *.indd
 *.idlk
 ~*.idlk
