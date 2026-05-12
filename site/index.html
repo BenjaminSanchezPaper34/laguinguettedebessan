@@ -2352,7 +2352,16 @@
 
         // ---- Accordion : transforme chaque .menu-category en pli/dépli ---- //
         const wineIds = ['cat-rouges', 'cat-roses', 'cat-blancs', 'cat-bulles'];
-        document.querySelectorAll('.menu-category').forEach((cat, i) => {
+        const allCategories = document.querySelectorAll('.menu-category');
+
+        // Ferme toutes les catégories sauf celles dans keepOpenIds
+        function closeOthers(keepOpenIds) {
+          allCategories.forEach(c => {
+            if (!keepOpenIds.includes(c.id)) c.classList.remove('open');
+          });
+        }
+
+        allCategories.forEach((cat) => {
           const h3 = cat.querySelector(':scope > h3');
           if (!h3) return;
 
@@ -2361,7 +2370,6 @@
           inner.className = 'menu-category-inner';
           const content = document.createElement('div');
           content.className = 'menu-category-content';
-          // Déplace tous les frères suivants du h3 dans inner
           let next = h3.nextElementSibling;
           while (next) {
             const sibling = next.nextElementSibling;
@@ -2371,9 +2379,20 @@
           content.appendChild(inner);
           cat.appendChild(content);
 
-          // Toggle au clic sur le titre
+          // Toggle exclusif : ouvre celle-ci et ferme les autres
           h3.addEventListener('click', () => {
-            cat.classList.toggle('open');
+            const wasOpen = cat.classList.contains('open');
+            // Cas spécial vins : si on clique sur une sous-catégorie de vin, garder les 4 vins ouverts
+            const isWine = wineIds.includes(cat.id);
+            const keepOpen = wasOpen ? [] : (isWine ? wineIds : [cat.id]);
+            closeOthers(keepOpen);
+            if (wasOpen) {
+              cat.classList.remove('open');
+            } else if (isWine) {
+              wineIds.forEach(id => document.getElementById(id)?.classList.add('open'));
+            } else {
+              cat.classList.add('open');
+            }
             setTimeout(() => ScrollTrigger.refresh(), 550);
           });
         });
@@ -2388,9 +2407,10 @@
             const target = document.getElementById(targetId);
             if (!target) return;
 
-            // Ouvre la catégorie ciblée
+            // Mode exclusif : ferme les autres, ouvre la cible
+            const keepOpen = targetId === 'cat-rouges' ? wineIds : [targetId];
+            closeOthers(keepOpen);
             target.classList.add('open');
-            // Bouton "Vins" : ouvre aussi les 3 autres sous-catégories vins
             if (targetId === 'cat-rouges') {
               wineIds.forEach(id => document.getElementById(id)?.classList.add('open'));
             }
