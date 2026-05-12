@@ -436,6 +436,61 @@
       border-color: #FFEFD6;
     }
 
+    /* ---- Accordion par catégorie de la carte ---- */
+    .menu-category {
+      border-top: 1px solid rgba(255, 239, 214, 0.08);
+      padding: 1.5rem 0;
+      margin-top: 0 !important;
+    }
+    .menu-category:last-of-type {
+      border-bottom: 1px solid rgba(255, 239, 214, 0.08);
+    }
+    .menu-category > h3:first-child {
+      cursor: pointer;
+      padding-right: 44px;
+      position: relative;
+      user-select: none;
+      margin-bottom: 0 !important;
+      transition: color 0.3s ease;
+    }
+    .menu-category > h3:first-child:hover {
+      color: rgba(255, 239, 214, 0.8);
+    }
+    .menu-category > h3:first-child::after {
+      content: '';
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      transform: translateY(-50%);
+      background-image:
+        linear-gradient(rgba(255,239,214,0.6), rgba(255,239,214,0.6)),
+        linear-gradient(rgba(255,239,214,0.6), rgba(255,239,214,0.6));
+      background-position: center;
+      background-size: 100% 1.5px, 1.5px 100%;
+      background-repeat: no-repeat;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-size 0.3s ease;
+    }
+    .menu-category.open > h3:first-child::after {
+      transform: translateY(-50%) rotate(180deg);
+      background-size: 100% 1.5px, 0 100%;
+    }
+    .menu-category-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1), margin-top 0.3s ease;
+      margin-top: 0;
+    }
+    .menu-category-content > .menu-category-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+    .menu-category.open > .menu-category-content {
+      grid-template-rows: 1fr;
+      margin-top: 1.5rem;
+    }
+
     /* Fade lateral sur la barre de catégories scrollable (mobile/tablette) */
     .menu-nav-fade {
       -webkit-mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
@@ -2295,20 +2350,61 @@
         });
 
 
-        // ---- Menu category nav ---- //
+        // ---- Accordion : transforme chaque .menu-category en pli/dépli ---- //
+        const wineIds = ['cat-rouges', 'cat-roses', 'cat-blancs', 'cat-bulles'];
+        document.querySelectorAll('.menu-category').forEach((cat, i) => {
+          const h3 = cat.querySelector(':scope > h3');
+          if (!h3) return;
+
+          // Wrap tout ce qui suit le h3 dans un container animé
+          const inner = document.createElement('div');
+          inner.className = 'menu-category-inner';
+          const content = document.createElement('div');
+          content.className = 'menu-category-content';
+          // Déplace tous les frères suivants du h3 dans inner
+          let next = h3.nextElementSibling;
+          while (next) {
+            const sibling = next.nextElementSibling;
+            inner.appendChild(next);
+            next = sibling;
+          }
+          content.appendChild(inner);
+          cat.appendChild(content);
+
+          // Toggle au clic sur le titre
+          h3.addEventListener('click', () => {
+            cat.classList.toggle('open');
+            setTimeout(() => ScrollTrigger.refresh(), 550);
+          });
+
+          // Premier accordion (Tapas) ouvert par défaut pour donner un aperçu
+          if (i === 0) cat.classList.add('open');
+        });
+
+        // ---- Menu category nav (boutons filtres) ---- //
         const catBtns = document.querySelectorAll('.cat-btn');
         catBtns.forEach(btn => {
           btn.addEventListener('click', () => {
             catBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            const target = document.getElementById(btn.dataset.target);
-            if (target) {
-              if (window.lenis) {
-                window.lenis.scrollTo(target, { offset: -140 });
-              } else {
-                const y = target.getBoundingClientRect().top + window.scrollY - 140;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-              }
+            const targetId = btn.dataset.target;
+            const target = document.getElementById(targetId);
+            if (!target) return;
+
+            // Ouvre la catégorie ciblée
+            target.classList.add('open');
+            // Bouton "Vins" : ouvre aussi les 3 autres sous-catégories vins
+            if (targetId === 'cat-rouges') {
+              wineIds.forEach(id => document.getElementById(id)?.classList.add('open'));
+            }
+
+            // Scroll smooth vers la catégorie
+            setTimeout(() => ScrollTrigger.refresh(), 550);
+            if (window.lenis) {
+              window.lenis.scrollTo(target, { offset: -140 });
+            } else {
+              const y = target.getBoundingClientRect().top + window.scrollY - 140;
+              window.scrollTo({ top: y, behavior: 'smooth' });
             }
           });
         });
