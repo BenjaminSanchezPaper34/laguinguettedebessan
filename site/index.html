@@ -2361,6 +2361,14 @@
           });
         }
 
+        // Recalcule la hauteur de la page pour Lenis + ScrollTrigger après une animation d'accordion
+        function refreshScroll() {
+          if (window.lenis && typeof window.lenis.resize === 'function') {
+            window.lenis.resize();
+          }
+          ScrollTrigger.refresh();
+        }
+
         allCategories.forEach((cat) => {
           const h3 = cat.querySelector(':scope > h3');
           if (!h3) return;
@@ -2382,7 +2390,6 @@
           // Toggle exclusif : ouvre celle-ci et ferme les autres
           h3.addEventListener('click', () => {
             const wasOpen = cat.classList.contains('open');
-            // Cas spécial vins : si on clique sur une sous-catégorie de vin, garder les 4 vins ouverts
             const isWine = wineIds.includes(cat.id);
             const keepOpen = wasOpen ? [] : (isWine ? wineIds : [cat.id]);
             closeOthers(keepOpen);
@@ -2393,7 +2400,10 @@
             } else {
               cat.classList.add('open');
             }
-            setTimeout(() => ScrollTrigger.refresh(), 550);
+            // Refresh pendant + après l'animation pour que Lenis suive la hauteur changeante
+            refreshScroll();
+            setTimeout(refreshScroll, 300);
+            setTimeout(refreshScroll, 600);
           });
         });
 
@@ -2415,8 +2425,12 @@
               wineIds.forEach(id => document.getElementById(id)?.classList.add('open'));
             }
 
+            // Refresh Lenis pendant + après l'animation pour libérer le scroll
+            refreshScroll();
+            setTimeout(refreshScroll, 300);
+            setTimeout(refreshScroll, 600);
+
             // Scroll smooth vers la catégorie
-            setTimeout(() => ScrollTrigger.refresh(), 550);
             if (window.lenis) {
               window.lenis.scrollTo(target, { offset: -140 });
             } else {
