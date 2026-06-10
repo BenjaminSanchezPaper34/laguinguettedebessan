@@ -19,11 +19,14 @@ npm-debug.log*
 /BAT/
 /DEVIS.pdf
 /IMAGES/
+/IMPRESSION/
+/MOCKUP/
 /REÇUS/
 /STORIES-*
 /POST-*
 /Gabarit*
 /CARTE*.pdf
+/DEPLIANT*
 *.indd
 *.idlk
 ~*.idlk
