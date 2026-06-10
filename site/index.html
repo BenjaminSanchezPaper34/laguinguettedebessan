@@ -2242,6 +2242,17 @@
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smooth: true,
+            // Laisse le scroll natif sur les éléments Elfsight (pastille avis) et iframes,
+            // sinon Lenis capture la molette et c'est le site qui défile au lieu du widget
+            prevent: (node) => {
+              if (!node || node.nodeType !== 1) return false;
+              if (node.nodeName === 'IFRAME') return true;
+              const cls = typeof node.className === 'string'
+                ? node.className
+                : (node.getAttribute && node.getAttribute('class')) || '';
+              const id = node.id || '';
+              return /eapps|elfsight/i.test(cls) || /elfsight|eapps/i.test(id);
+            },
           });
           window.lenis = lenis; // accessible globalement pour les boutons de catégorie
 
