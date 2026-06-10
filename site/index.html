@@ -2104,6 +2104,18 @@
   </footer>
 
   <!-- Elfsight All-in-One Reviews | GUINGUETTE DE BESSAN (pastille flottante) -->
+  <script>
+    // Réaffiche la pastille d'avis à chaque chargement : une fois fermée par
+    // le visiteur, Elfsight la garde masquée via le localStorage. On efface
+    // cette mémoire avant l'init du widget pour qu'elle réapparaisse.
+    try {
+      [localStorage, sessionStorage].forEach((store) => {
+        Object.keys(store).forEach((k) => {
+          if (/elfsight|eapps/i.test(k)) store.removeItem(k);
+        });
+      });
+    } catch (e) {}
+  </script>
   <script src="https://elfsightcdn.com/platform.js" async></script>
   <div class="elfsight-app-cdca6ff7-b326-4f2f-bbe7-807b60852656" data-elfsight-app-lazy></div>
 
