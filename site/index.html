@@ -2031,10 +2031,16 @@
         <div class="section-divider mx-auto mt-8"></div>
       </div>
 
-      <!-- Elfsight All-in-One Reviews | LA GUINGUETTE - BESSAN -->
+      <!-- Elfsight All-in-One Reviews | LA GUINGUETTE - BESSAN (version hébergée) -->
       <div class="reveal" data-lenis-prevent>
-        <script src="https://elfsightcdn.com/platform.js" async></script>
-        <div class="elfsight-app-ceecbdda-3d2d-4dfa-9029-e2fb968dd89d" data-elfsight-app-lazy></div>
+        <iframe
+          src="https://ceecbdda3d2d4dfa9029e2fb968dd89d.elf.site"
+          title="Avis clients La Guinguette de Bessan"
+          class="w-full rounded-2xl border border-creme/10"
+          style="height: 720px; background: transparent;"
+          loading="lazy"
+          frameborder="0">
+        </iframe>
       </div>
     </div>
   </section>
@@ -2508,12 +2514,6 @@
           img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
         });
 
-        // Le widget Elfsight (avis) charge en async et grandit après coup :
-        // on observe sa taille pour resynchroniser Lenis/ScrollTrigger
-        const reviewsWidget = document.querySelector('.elfsight-app-ceecbdda-3d2d-4dfa-9029-e2fb968dd89d');
-        if (reviewsWidget && 'ResizeObserver' in window) {
-          new ResizeObserver(() => refreshScroll()).observe(reviewsWidget);
-        }
         // Filet de sécurité : refresh global après que la page soit complètement chargée
         window.addEventListener('load', () => ScrollTrigger.refresh());
 
