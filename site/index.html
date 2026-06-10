@@ -72,6 +72,20 @@
       "longitude": 3.3875
     },
     "servesCuisine": ["Française", "Méditerranéenne", "Fruits de mer", "Grillades"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "12:00",
+        "closes": "14:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "18:00",
+        "closes": "22:00"
+      }
+    ],
     "priceRange": "€€",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Credit Card",
@@ -230,6 +244,14 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "La saison 2026 ouvre le 14 mai. Le restaurant est ouvert pendant toute la saison estivale, midi et soir."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels sont les horaires d'ouverture ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La Guinguette de Bessan est ouverte tout l'été, le midi de 12h00 à 14h00 et le soir de 18h00 à 22h00."
         }
       },
       {
@@ -2041,6 +2063,16 @@
               34550 Bessan
             </a>
           </address>
+
+          <!-- Horaires -->
+          <div>
+            <p class="text-xs uppercase tracking-widest text-creme/30 mb-3">Horaires</p>
+            <div class="text-lg text-creme/80 leading-relaxed">
+              <p>Midi &mdash; 12h00 à 14h00</p>
+              <p>Soir &mdash; 18h00 à 22h00</p>
+            </div>
+            <p class="text-sm text-creme/40 mt-2">Ouvert tout l'été</p>
+          </div>
 
           <!-- Téléphone -->
           <div>
