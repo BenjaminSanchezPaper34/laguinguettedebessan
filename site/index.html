@@ -123,8 +123,14 @@
             {"@type": "MenuItem", "name": "Filet de daurade", "description": "Riz aux légumes et vierge maison", "offers": {"@type": "Offer", "price": "23.90", "priceCurrency": "EUR"}},
             {"@type": "MenuItem", "name": "Tagliatelles aux palourdes", "description": "Sauce à l'ail confit, fines herbes et notes de citron", "offers": {"@type": "Offer", "price": "22.90", "priceCurrency": "EUR"}},
             {"@type": "MenuItem", "name": "Tartare de thon à la sauce ponzu", "description": "Sauce soja, gingembre et agrumes", "offers": {"@type": "Offer", "price": "24.90", "priceCurrency": "EUR"}},
-            {"@type": "MenuItem", "name": "Parillade de la mer", "description": "Sélection de produits de la mer", "offers": {"@type": "Offer", "price": "34.90", "priceCurrency": "EUR"}},
-            {"@type": "MenuItem", "name": "TAG Burrata", "description": "Tagliatelles, burrata, légumes antipasti et pesto maison (végétarien)", "suitableForDiet": "https://schema.org/VegetarianDiet", "offers": {"@type": "Offer", "price": "19.90", "priceCurrency": "EUR"}}
+            {"@type": "MenuItem", "name": "Parillade de la mer", "description": "Sélection de produits de la mer", "offers": {"@type": "Offer", "price": "34.90", "priceCurrency": "EUR"}}
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Végétarien",
+          "hasMenuItem": [
+            {"@type": "MenuItem", "name": "TAG Burrata", "description": "Tagliatelles, burrata, légumes antipasti et pesto maison", "suitableForDiet": "https://schema.org/VegetarianDiet", "offers": {"@type": "Offer", "price": "19.90", "priceCurrency": "EUR"}}
           ]
         },
         {
@@ -886,6 +892,7 @@
           <button class="cat-btn" data-target="cat-entrees">Entrées</button>
           <button class="cat-btn" data-target="cat-mer">Mer</button>
           <button class="cat-btn" data-target="cat-terre">Terre</button>
+          <button class="cat-btn" data-target="cat-vege">Végétarien</button>
           <button class="cat-btn" data-target="cat-enfant">Enfant</button>
           <button class="cat-btn" data-target="cat-desserts">Desserts</button>
           <button class="cat-btn" data-target="cat-glaces">Glaces</button>
@@ -1046,14 +1053,6 @@
         </div>
 
         <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
-          <div>
-            <p class="font-medium text-creme">TAG Burrata <span class="text-xs text-creme/40 italic">végétarien</span></p>
-            <p class="text-sm text-creme/40 mt-1">Tagliatelles, burrata, légumes antipasti et pesto maison.</p>
-          </div>
-          <p class="text-creme/70 font-light whitespace-nowrap">19,90€</p>
-        </div>
-
-        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
           <p class="font-medium text-creme">Sélection de poisson</p>
           <p class="text-creme/40 font-light text-sm whitespace-nowrap italic">voir ardoise</p>
         </div>
@@ -1126,6 +1125,25 @@
             <span>Poivre +1,00€</span>
             <span>Aïoli +1,00€</span>
           </div>
+        </div>
+      </div>
+
+      <!-- ---- VÉGÉTARIEN ---- -->
+      <div id="cat-vege" class="menu-category mt-16">
+        <h3 class="font-playfair text-2xl md:text-3xl text-creme mb-8 reveal flex items-center gap-3">
+          Végétarien
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9ccc65" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 20A7 7 0 0 1 4 13c0-5 4-9 9-10 1 5 0 11-2 14"/>
+            <path d="M11 20c0-4 1-8 5-11"/>
+          </svg>
+        </h3>
+
+        <div class="menu-item py-5 px-2 flex justify-between items-start gap-4 reveal">
+          <div>
+            <p class="font-medium text-creme">TAG Burrata</p>
+            <p class="text-sm text-creme/40 mt-1">Tagliatelles, burrata, légumes antipasti et pesto maison.</p>
+          </div>
+          <p class="text-creme/70 font-light whitespace-nowrap">19,90€</p>
         </div>
       </div>
 
