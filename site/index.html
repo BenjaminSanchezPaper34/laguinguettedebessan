@@ -398,6 +398,24 @@
       pointer-events: auto !important;
     }
 
+    /* ---- Burger menu (X géométriquement exact) ---- */
+    .burger-bar {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 22px;
+      height: 1.5px;
+      border-radius: 2px;
+      background: #FFEFD6;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+    }
+    #burger-top { transform: translate(-50%, -50%) translateY(-5px); }
+    #burger-mid { transform: translate(-50%, -50%); }
+    #burger-bot { transform: translate(-50%, -50%) translateY(5px); }
+    #burger.open #burger-top { transform: translate(-50%, -50%) rotate(45deg); }
+    #burger.open #burger-mid { opacity: 0; transform: translate(-50%, -50%) scaleX(0.3); }
+    #burger.open #burger-bot { transform: translate(-50%, -50%) rotate(-45deg); }
+
     /* ---- Hero video ---- */
     .hero-video-wrap {
       position: absolute;
@@ -738,10 +756,10 @@
         </a>
       </div>
       <!-- Mobile hamburger -->
-      <button id="burger" class="lg:hidden flex flex-col gap-1.5 p-2 z-50" aria-label="Menu">
-        <span class="block w-6 h-px bg-creme transition-all duration-300 origin-center" id="burger-top"></span>
-        <span class="block w-6 h-px bg-creme transition-all duration-300" id="burger-mid"></span>
-        <span class="block w-4 h-px bg-creme transition-all duration-300 origin-center ml-auto" id="burger-bot"></span>
+      <button id="burger" class="lg:hidden relative w-10 h-10 z-50" aria-label="Menu" aria-expanded="false">
+        <span class="burger-bar" id="burger-top"></span>
+        <span class="burger-bar" id="burger-mid"></span>
+        <span class="burger-bar" id="burger-bot"></span>
       </button>
     </div>
   </nav>
@@ -2310,38 +2328,20 @@
       // ---- Mobile menu ---- //
       const burger = document.getElementById('burger');
       const mobileMenu = document.getElementById('mobileMenu');
-      const burgerTop = document.getElementById('burger-top');
-      const burgerMid = document.getElementById('burger-mid');
-      const burgerBot = document.getElementById('burger-bot');
       let menuOpen = false;
 
-      burger.addEventListener('click', () => {
-        menuOpen = !menuOpen;
-        mobileMenu.classList.toggle('open', menuOpen);
-        // Animate burger
-        if (menuOpen) {
-          burgerTop.style.transform = 'rotate(45deg) translate(3px, 3px)';
-          burgerMid.style.opacity = '0';
-          burgerBot.style.transform = 'rotate(-45deg) translate(3px, -3px)';
-          burgerBot.style.width = '24px';
-        } else {
-          burgerTop.style.transform = '';
-          burgerMid.style.opacity = '';
-          burgerBot.style.transform = '';
-          burgerBot.style.width = '';
-        }
-      });
+      function setMenu(open) {
+        menuOpen = open;
+        mobileMenu.classList.toggle('open', open);
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      burger.addEventListener('click', () => setMenu(!menuOpen));
 
       // Close mobile menu on link click
       document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
-          menuOpen = false;
-          mobileMenu.classList.remove('open');
-          burgerTop.style.transform = '';
-          burgerMid.style.opacity = '';
-          burgerBot.style.transform = '';
-          burgerBot.style.width = '';
-        });
+        link.addEventListener('click', () => setMenu(false));
       });
 
 
