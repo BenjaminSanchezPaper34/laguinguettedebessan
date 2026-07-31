@@ -1,4 +1,45 @@
+# La Guinguette de Bessan — tout le monde est le bienvenu, humains comme IA
+
 User-agent: *
 Allow: /
+
+# Crawlers IA explicitement autorisés (recherche conversationnelle)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Résumé structuré du site pour les LLM : https://guinguette-bessan.fr/llms.txt
 
 Sitemap: https://guinguette-bessan.fr/sitemap.xml
