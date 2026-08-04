@@ -95,6 +95,14 @@
       "hasMenuSection": [
         {
           "@type": "MenuSection",
+          "name": "Menu de la Saint Laurent",
+          "description": "Menu spécial pour la fête de la Saint Laurent à Bessan, du samedi 8 au mercredi 12 août 2026. Entrée + plat + dessert.",
+          "hasMenuItem": [
+            {"@type": "MenuItem", "name": "Menu complet Saint Laurent", "description": "Salade espagnole (Serrano, manchego, melon, pan con tomate) ou Choux gravlax de saumon — Hampe de bœuf grillée sauce échalote vin rouge ou Filet de poisson (daurade ou bar) beurre blanc aux agrumes — Tartelette poire chocolat pistache, Tiramisu à la fraise ou 2 boules de glaces", "offers": {"@type": "Offer", "price": "25.90", "priceCurrency": "EUR", "validFrom": "2026-08-08", "validThrough": "2026-08-12"}}
+          ]
+        },
+        {
+          "@type": "MenuSection",
           "name": "Tapas",
           "hasMenuItem": [
             {"@type": "MenuItem", "name": "Patatas bravas et sauce maison", "offers": {"@type": "Offer", "price": "7.00", "priceCurrency": "EUR"}},
@@ -918,8 +926,46 @@
         </div>
       </div>
 
+      <!-- Menu de la Saint Laurent (auto-masqué après le 12 août 2026) -->
+      <div class="mt-12 reveal" id="menuSaintLaurent">
+        <div class="text-center p-8 md:p-10 rounded-2xl border border-creme/25 bg-creme/[0.06]">
+          <p class="text-xs uppercase tracking-[3px] text-creme/50 mb-2">Fête de la Saint Laurent à Bessan</p>
+          <p class="font-playfair text-2xl md:text-3xl text-creme mb-1">Menu de la Saint Laurent</p>
+          <p class="text-sm text-creme/40 mb-3">Du samedi 8 au mercredi 12 août</p>
+          <p class="text-2xl font-light text-creme mb-8">25,90€</p>
+
+          <div class="text-creme/70 space-y-1">
+            <p class="font-medium text-creme">Salade espagnole</p>
+            <p class="text-sm text-creme/40">Serrano, manchego, melon, pan con tomate.</p>
+            <p class="text-sm italic text-creme/50 py-1">ou</p>
+            <p class="font-medium text-creme">Choux gravlax de saumon</p>
+            <p class="text-sm text-creme/40">Sur un mesclun.</p>
+          </div>
+
+          <div class="section-divider mx-auto my-6"></div>
+
+          <div class="text-creme/70 space-y-1">
+            <p class="font-medium text-creme">Hampe de b&oelig;uf grillée</p>
+            <p class="text-sm text-creme/40">Sauce échalote vin rouge, pommes de terre grenaille à la persillade et légumes rôtis.</p>
+            <p class="text-sm italic text-creme/50 py-1">ou</p>
+            <p class="font-medium text-creme">Filet de poisson</p>
+            <p class="text-sm text-creme/40">Daurade ou bar selon arrivage, sauce beurre blanc aux agrumes, riz parfumé et légumes rôtis.</p>
+          </div>
+
+          <div class="section-divider mx-auto my-6"></div>
+
+          <div class="text-creme/70 space-y-1">
+            <p class="font-medium text-creme">Tartelette poire chocolat pistache</p>
+            <p class="text-sm italic text-creme/50 py-1">ou</p>
+            <p class="font-medium text-creme">Tiramisu à la fraise</p>
+            <p class="text-sm italic text-creme/50 py-1">ou</p>
+            <p class="font-medium text-creme">2 boules de glaces</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Menus du jour -->
-      <div class="mt-12 reveal">
+      <div class="mt-8 reveal">
         <div class="text-center p-8 rounded-2xl border border-creme/10 bg-creme/[0.03]">
           <p class="font-playfair italic text-xl text-creme/80 mb-2">Formules du midi</p>
           <p class="text-sm text-creme/40 mb-4">Uniquement le midi, du lundi au vendredi</p>
@@ -2259,6 +2305,12 @@
       if (seasonBanner && new Date() < openingDate) {
         seasonBanner.classList.remove('hidden');
         if (navbar) navbar.style.top = seasonBanner.offsetHeight + 'px';
+      }
+
+      // ---- Menu Saint Laurent (auto-retiré après le 12 août 2026) ---- //
+      const menuSL = document.getElementById('menuSaintLaurent');
+      if (menuSL && new Date() > new Date('2026-08-12T23:59:59')) {
+        menuSL.remove();
       }
 
       // ---- Language switcher ---- //
