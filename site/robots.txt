@@ -40,6 +40,6 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-# Résumé structuré du site pour les LLM : https://guinguette-bessan.fr/llms.txt
+# Résumé structuré du site pour les LLM : https://www.guinguette-bessan.fr/llms.txt
 
-Sitemap: https://guinguette-bessan.fr/sitemap.xml
+Sitemap: https://www.guinguette-bessan.fr/sitemap.xml
