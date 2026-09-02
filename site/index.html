@@ -2219,7 +2219,7 @@
       <nav class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2" aria-label="Liens légaux">
         <a href="mentions-legales.html" class="hover:text-creme/60 transition-colors">Mentions légales</a>
         <a href="confidentialite.html" class="hover:text-creme/60 transition-colors">Politique de confidentialité</a>
-        <a href="#" id="gererCookies" class="hover:text-creme/60 transition-colors">Gérer les cookies</a>
+        <a href="#" id="gererCookies" class="hover:text-creme/60 transition-colors">Préférences de confidentialité</a>
       </nav>
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <p>La Guinguette de Bessan &copy; <script>document.write(new Date().getFullYear())</script> &mdash; Tous droits réservés</p>
@@ -2316,65 +2316,95 @@
   </script>
 
   <!-- ============================================ -->
-  <!-- CONSENTEMENT AUX SERVICES TIERS (CNIL/RGPD)  -->
-  <!-- Aucun service tiers (Elfsight, Google Maps)  -->
-  <!-- n'est chargé avant accord explicite.         -->
+  <!-- CONSENTEMENT PAR SERVICE (CNIL/RGPD)         -->
+  <!-- Aucun bandeau à l'arrivée : rien n'est chargé -->
+  <!-- tant que le visiteur ne demande pas le        -->
+  <!-- service. On ne demande qu'au point d'usage.   -->
   <!-- ============================================ -->
 
-  <!-- Bandeau de consentement -->
-  <div id="consentBanner" class="fixed bottom-0 left-0 w-full z-[70] hidden" role="dialog" aria-live="polite" aria-label="Gestion des cookies">
-    <div class="mx-4 mb-4 md:mx-auto md:max-w-2xl p-5 md:p-6 rounded-2xl border border-creme/20 shadow-2xl" style="background: #1e2614;">
-      <p class="font-medium text-creme mb-1">Cookies et services tiers</p>
-      <p class="text-sm text-creme/60 leading-relaxed mb-4">
-        Ce site utilise des services externes (avis clients Elfsight, carte Google Maps)
-        qui déposent des cookies. Ils ne sont chargés qu'avec votre accord.
-        <a href="confidentialite.html" class="underline underline-offset-4 text-creme/80 hover:text-creme">En savoir plus</a>
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <button id="consentAccept" class="px-6 py-2.5 bg-creme text-vert text-sm font-semibold rounded-full hover:bg-creme-dark transition-all duration-300">Accepter</button>
-        <button id="consentDeny" class="px-6 py-2.5 border border-creme/30 text-creme/80 text-sm font-medium rounded-full hover:bg-creme/10 transition-all duration-300">Refuser</button>
-      </div>
+  <!-- Pastille d'avis « maison » : 100 % locale, ne dépose aucun cookie.
+       Le vrai widget Elfsight n'est chargé qu'au clic (= consentement explicite). -->
+  <button id="avisPastille" class="fixed bottom-5 left-5 z-[70] hidden items-center gap-2.5 pl-4 pr-5 py-3 rounded-full border border-creme/20 text-sm text-creme/80 shadow-xl transition-all duration-300 hover:text-creme hover:border-creme/40 hover:-translate-y-0.5" style="background:#1e2614;" aria-label="Afficher les avis clients (charge un service externe)">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9L12 3.5z"/>
+    </svg>
+    Avis clients
+  </button>
+
+  <!-- Panneau de préférences : ouvert uniquement à la demande, jamais imposé -->
+  <div id="prefsPanel" class="fixed bottom-5 left-5 z-[75] hidden w-[min(22rem,calc(100vw-2.5rem))] p-5 rounded-2xl border border-creme/20 shadow-2xl" style="background:#1e2614;" role="dialog" aria-label="Préférences de confidentialité">
+    <p class="font-medium text-creme mb-1">Préférences de confidentialité</p>
+    <p class="text-sm text-creme/60 leading-relaxed mb-4">
+      Ce site ne charge aucun service externe tant que vous ne le demandez pas.
+      <a href="confidentialite.html" class="underline underline-offset-4 text-creme/80 hover:text-creme">En savoir plus</a>
+    </p>
+    <ul class="text-sm text-creme/70 space-y-2 mb-4">
+      <li class="flex items-center justify-between gap-3">
+        <span>Avis clients <span class="text-creme/50">(Elfsight)</span></span>
+        <span id="etatAvis" class="text-xs px-2 py-1 rounded-full border border-creme/20"></span>
+      </li>
+      <li class="flex items-center justify-between gap-3">
+        <span>Carte <span class="text-creme/50">(Google Maps)</span></span>
+        <span id="etatMaps" class="text-xs px-2 py-1 rounded-full border border-creme/20"></span>
+      </li>
+    </ul>
+    <div class="flex flex-wrap gap-2">
+      <button id="prefsReset" class="px-4 py-2 border border-creme/30 text-creme/80 text-sm rounded-full hover:bg-creme/10 transition-all duration-300">Tout désactiver</button>
+      <button id="prefsClose" class="px-4 py-2 text-creme/60 text-sm rounded-full hover:text-creme transition-all duration-300">Fermer</button>
     </div>
   </div>
 
   <script>
-    // ---- Gestionnaire de consentement (vanilla, localStorage) ---- //
+    // ---- Consentement par service, demandé au point d'usage ---- //
     (function () {
-      var KEY = 'lg-consent-tiers'; // "granted" | "denied"
-      var banner, granted = false;
+      var CLE_AVIS = 'lg-consent-avis';
+      var CLE_MAPS = 'lg-consent-maps';
 
-      function lireEtat() {
-        try { return localStorage.getItem(KEY); } catch (e) { return null; }
-      }
-      function ecrireEtat(v) {
-        try { localStorage.setItem(KEY, v); } catch (e) {}
-      }
+      function lire(c) { try { return localStorage.getItem(c) === 'granted'; } catch (e) { return false; } }
+      function accorder(c) { try { localStorage.setItem(c, 'granted'); } catch (e) {} }
+      function oublier(c) { try { localStorage.removeItem(c); } catch (e) {} }
 
-      // Charge la pastille d'avis Elfsight (uniquement après consentement)
+      var pastille = document.getElementById('avisPastille');
+      var panneau = document.getElementById('prefsPanel');
+
+      /* --- Avis clients (Elfsight) --- */
       function chargerElfsight() {
         if (document.querySelector('script[src*="elfsightcdn"]')) return;
-        try { // la pastille doit réapparaître à chaque visite même si fermée
-          [localStorage, sessionStorage].forEach(function (store) {
-            Object.keys(store).forEach(function (k) {
-              if (/elfsight|eapps/i.test(k)) store.removeItem(k);
-            });
+        try { // la pastille Elfsight doit revenir même si le visiteur l'avait fermée
+          [localStorage, sessionStorage].forEach(function (s) {
+            Object.keys(s).forEach(function (k) { if (/elfsight|eapps/i.test(k)) s.removeItem(k); });
           });
         } catch (e) {}
-        var div = document.createElement('div');
-        div.className = 'elfsight-app-cdca6ff7-b326-4f2f-bbe7-807b60852656';
-        div.setAttribute('data-elfsight-app-lazy', '');
-        document.body.appendChild(div);
+        var d = document.createElement('div');
+        d.className = 'elfsight-app-cdca6ff7-b326-4f2f-bbe7-807b60852656';
+        d.setAttribute('data-elfsight-app-lazy', '');
+        document.body.appendChild(d);
         var s = document.createElement('script');
         s.src = 'https://elfsightcdn.com/platform.js';
         s.async = true;
         document.body.appendChild(s);
       }
 
-      // Charge la carte Google Maps à la place de l'encadré adresse
+      function majPastille() {
+        if (!pastille) return;
+        if (lire(CLE_AVIS)) { pastille.classList.add('hidden'); pastille.classList.remove('flex'); }
+        else { pastille.classList.remove('hidden'); pastille.classList.add('flex'); }
+      }
+
+      if (lire(CLE_AVIS)) chargerElfsight();
+      majPastille();
+
+      if (pastille) pastille.addEventListener('click', function () {
+        accorder(CLE_AVIS);
+        majPastille();
+        chargerElfsight();
+      });
+
+      /* --- Carte (Google Maps) --- */
       function chargerMaps() {
         var ph = document.getElementById('mapPlaceholder');
-        var container = document.getElementById('mapContainer');
-        if (!ph || !container) return;
+        var box = document.getElementById('mapContainer');
+        if (!ph || !box) return;
         var f = document.createElement('iframe');
         f.src = "https://maps.google.com/maps?q=La+Guinguette+de+Bessan,+Chemin+de+l'allée,+34550+Bessan&t=&z=16&ie=UTF8&iwloc=&output=embed";
         f.width = '100%'; f.height = '100%';
@@ -2383,47 +2413,51 @@
         f.title = 'Localisation La Guinguette de Bessan';
         f.setAttribute('allowfullscreen', '');
         f.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
-        container.replaceChild(f, ph);
+        box.replaceChild(f, ph);
       }
 
-      function activerTiers() {
-        granted = true;
-        chargerElfsight();
+      if (lire(CLE_MAPS)) chargerMaps();
+      var mapBtn = document.getElementById('mapConsentBtn');
+      if (mapBtn) mapBtn.addEventListener('click', function () {
+        accorder(CLE_MAPS);
         chargerMaps();
+      });
+
+      /* --- Panneau de préférences (jamais affiché spontanément) --- */
+      function majEtats() {
+        var a = document.getElementById('etatAvis');
+        var m = document.getElementById('etatMaps');
+        if (a) a.textContent = lire(CLE_AVIS) ? 'Activé' : 'Non chargé';
+        if (m) m.textContent = lire(CLE_MAPS) ? 'Activé' : 'Non chargé';
+      }
+      function ouvrirPanneau() {
+        if (!panneau) return;
+        majEtats();
+        panneau.classList.remove('hidden');
+        if (pastille) { pastille.classList.add('hidden'); pastille.classList.remove('flex'); }
+      }
+      function fermerPanneau() {
+        if (panneau) panneau.classList.add('hidden');
+        majPastille();
       }
 
-      function fermerBandeau() {
-        if (banner) banner.classList.add('hidden');
-      }
+      var gerer = document.getElementById('gererCookies');
+      if (gerer) gerer.addEventListener('click', function (e) { e.preventDefault(); ouvrirPanneau(); });
+      if (window.location.hash === '#gererCookies') ouvrirPanneau();
 
-      function ouvrirBandeau() {
-        if (banner) banner.classList.remove('hidden');
-      }
+      var close = document.getElementById('prefsClose');
+      if (close) close.addEventListener('click', fermerPanneau);
 
-      document.addEventListener('DOMContentLoaded', function () {
-        banner = document.getElementById('consentBanner');
-        var etat = lireEtat();
-        if (etat === 'granted') { activerTiers(); }
-        else if (etat !== 'denied') { ouvrirBandeau(); }
-
-        document.getElementById('consentAccept').addEventListener('click', function () {
-          ecrireEtat('granted'); fermerBandeau(); activerTiers();
-        });
-        document.getElementById('consentDeny').addEventListener('click', function () {
-          ecrireEtat('denied'); fermerBandeau();
-        });
-        // Bouton « Autoriser » de l'encadré carte = consentement
-        var mapBtn = document.getElementById('mapConsentBtn');
-        if (mapBtn) mapBtn.addEventListener('click', function () {
-          ecrireEtat('granted'); fermerBandeau(); activerTiers();
-        });
-        // Lien « Gérer les cookies » du footer : rouvre le bandeau
-        // Arrivée depuis la page confidentialité (#gererCookies) : rouvrir le bandeau
-        if (window.location.hash === '#gererCookies') ouvrirBandeau();
-        var gerer = document.getElementById('gererCookies');
-        if (gerer) gerer.addEventListener('click', function (e) {
-          e.preventDefault(); ouvrirBandeau();
-        });
+      var reset = document.getElementById('prefsReset');
+      if (reset) reset.addEventListener('click', function () {
+        oublier(CLE_AVIS);
+        oublier(CLE_MAPS);
+        try { // on retire aussi ce que les services avaient posé
+          [localStorage, sessionStorage].forEach(function (s) {
+            Object.keys(s).forEach(function (k) { if (/elfsight|eapps/i.test(k)) s.removeItem(k); });
+          });
+        } catch (e) {}
+        window.location.reload();
       });
     })();
   </script>
