@@ -2324,28 +2324,13 @@
 
   <!-- Pastille d'avis « maison » : 100 % locale, ne dépose aucun cookie.
        Le vrai widget Elfsight n'est chargé qu'au clic (= consentement explicite). -->
-  <button id="avisPastille" class="fixed bottom-5 left-5 z-[70] hidden items-center gap-2.5 pl-4 pr-5 py-3 rounded-full border border-creme/20 text-sm text-creme/80 shadow-xl transition-all duration-300 hover:text-creme hover:border-creme/40 hover:-translate-y-0.5" style="background:#1e2614;" aria-label="Avis clients — voir les conditions d'affichage">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9L12 3.5z"/>
-    </svg>
-    Avis clients
+  <button id="avisPastille" class="fixed bottom-5 left-5 z-[70] hidden items-center gap-3 pl-4 pr-5 py-2.5 rounded-2xl border border-creme/20 shadow-xl text-left transition-all duration-300 hover:border-creme/40 hover:-translate-y-0.5" style="background:#1e2614;" aria-label="Afficher les avis clients — service Elfsight, dépose des cookies">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 text-creme/70" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9L12 3.5z"/></svg>
+    <span class="leading-tight">
+      <span class="block text-sm text-creme/85">Afficher les avis clients</span>
+      <span class="block text-xs text-creme/60 mt-0.5">Elfsight &middot; dépose des cookies</span>
+    </span>
   </button>
-
-  <!-- Information préalable au consentement (click-to-load) : la pastille
-       n'ouvre pas le service, elle explique d'abord ce qui va se passer. -->
-  <div id="avisPanel" class="fixed bottom-5 left-5 z-[75] hidden w-[min(22rem,calc(100vw-2.5rem))] p-5 rounded-2xl border border-creme/20 shadow-2xl" style="background:#1e2614;" role="dialog" aria-label="Afficher les avis clients">
-    <p class="font-medium text-creme mb-1">Avis clients</p>
-    <p class="text-sm text-creme/60 leading-relaxed mb-4">
-      Les avis sont fournis par <strong class="text-creme/80 font-medium">Elfsight</strong>,
-      un service externe. En les affichant, ce service pourra déposer des cookies sur
-      votre appareil.
-      <a href="confidentialite.html" class="underline underline-offset-4 text-creme/80 hover:text-creme">En savoir plus</a>
-    </p>
-    <div class="flex flex-wrap gap-2">
-      <button id="avisAccepter" class="px-5 py-2.5 bg-creme text-vert text-sm font-semibold rounded-full hover:bg-creme-dark transition-all duration-300">Afficher les avis</button>
-      <button id="avisAnnuler" class="px-4 py-2.5 text-creme/60 text-sm rounded-full hover:text-creme transition-all duration-300">Annuler</button>
-    </div>
-  </div>
 
   <!-- Panneau de préférences : ouvert uniquement à la demande, jamais imposé -->
   <div id="prefsPanel" class="fixed bottom-5 left-5 z-[75] hidden w-[min(22rem,calc(100vw-2.5rem))] p-5 rounded-2xl border border-creme/20 shadow-2xl" style="background:#1e2614;" role="dialog" aria-label="Préférences de confidentialité">
@@ -2410,35 +2395,12 @@
       if (lire(CLE_AVIS)) chargerElfsight();
       majPastille();
 
-      var avisPanel = document.getElementById('avisPanel');
-
-      function ouvrirAvis() {
-        if (!avisPanel) return;
-        avisPanel.classList.remove('hidden');
-        if (pastille) { pastille.classList.add('hidden'); pastille.classList.remove('flex'); }
-      }
-      function fermerAvis() {
-        if (avisPanel) avisPanel.classList.add('hidden');
-        majPastille();
-      }
-
-      // Un clic sur la pastille informe d'abord — il ne charge rien
-      if (pastille) pastille.addEventListener('click', ouvrirAvis);
-
-      // Le consentement n'est recueilli qu'ici, après l'information
-      var avisOk = document.getElementById('avisAccepter');
-      if (avisOk) avisOk.addEventListener('click', function () {
+      // La pastille annonce le prestataire et la conséquence : le clic vaut
+      // consentement éclairé, sans étape intermédiaire.
+      if (pastille) pastille.addEventListener('click', function () {
         accorder(CLE_AVIS);
-        if (avisPanel) avisPanel.classList.add('hidden');
         majPastille();
         chargerElfsight();
-      });
-      var avisNon = document.getElementById('avisAnnuler');
-      if (avisNon) avisNon.addEventListener('click', fermerAvis);
-
-      // Échap referme l'information sans rien charger
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && avisPanel && !avisPanel.classList.contains('hidden')) fermerAvis();
       });
 
       /* --- Carte (Google Maps) --- */
