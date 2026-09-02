@@ -6,7 +6,7 @@
 
   <!-- SEO Primary -->
   <title>La Guinguette de Bessan | Restaurant bord de l'Hérault &middot; Terrasse, Carte &amp; Vins</title>
-  <meta name="description" content="Restaurant au bord de l'Hérault à Bessan (34550). Ouverture de la saison le 14 mai 2026. Terrasse ombragée, cuisine terre &amp; mer, produits locaux, carte des vins. Réservation : 04 67 77 43 93."/>
+  <meta name="description" content="Restaurant au bord de l'Hérault à Bessan (34550). Terrasse ombragée, cuisine terre &amp; mer, tapas, cocktails et vins du Languedoc. Réservation : 04 67 77 43 93."/>
   <meta name="keywords" content="restaurant Bessan, guinguette Hérault, restaurant bord de rivière, terrasse Bessan, manger au bord de l'eau Hérault, restaurant terrasse ombragée 34, guinguette sud de France, restaurant Agde, restaurant Pézenas, restaurant bord de l'Hérault, carte restaurant Bessan, fruits de mer Hérault, lobster roll Bessan, burger Bessan, terrasse rivière 34550"/>
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
   <meta name="author" content="La Guinguette de Bessan"/>
@@ -96,6 +96,7 @@
         "description": "Fermeture exceptionnelle"
       }
     ],
+    "dateModified": "2026-09-02",
     "priceRange": "€€",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Credit Card",
@@ -420,6 +421,14 @@
       opacity: 1 !important;
       pointer-events: auto !important;
     }
+
+    /* ---- Focus clavier (accessibilité — invisible à la souris) ---- */
+    :focus-visible {
+      outline: 2px solid rgba(255, 239, 214, 0.9);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .cat-btn:focus-visible { outline-offset: 2px; }
 
     /* ---- Burger menu (X géométriquement exact) ---- */
     .burger-bar {
@@ -2324,6 +2333,8 @@
           ecrireEtat('granted'); fermerBandeau(); activerTiers();
         });
         // Lien « Gérer les cookies » du footer : rouvre le bandeau
+        // Arrivée depuis la page confidentialité (#gererCookies) : rouvrir le bandeau
+        if (window.location.hash === '#gererCookies') ouvrirBandeau();
         var gerer = document.getElementById('gererCookies');
         if (gerer) gerer.addEventListener('click', function (e) {
           e.preventDefault(); ouvrirBandeau();
