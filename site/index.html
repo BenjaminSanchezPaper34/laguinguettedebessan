@@ -2186,17 +2186,17 @@
           </div>
         </div>
 
-        <!-- Map embed (Google Maps — chargée uniquement après consentement) -->
+        <!-- Map embed (Google Maps — active par défaut, coupée depuis les préférences) -->
         <div class="reveal">
           <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-creme/10" id="mapContainer">
-            <!-- Encadré de remplacement tant que le consentement n'est pas donné -->
+            <!-- Encadré de repli, affiché seulement si le visiteur a désactivé la carte -->
             <div id="mapPlaceholder" class="w-full h-full flex flex-col items-center justify-center text-center gap-4 px-8 bg-vert-dark/40">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,239,214,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 21s-7-5.1-7-11a7 7 0 0 1 14 0c0 5.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/>
               </svg>
               <p class="text-creme/70 leading-relaxed">Chemin de l'allée (D137)<br/>34550 Bessan</p>
-              <p class="text-sm text-creme/60 max-w-xs">La carte Google Maps n'est chargée qu'avec votre accord (elle dépose des cookies Google).</p>
-              <button id="mapConsentBtn" class="px-6 py-2.5 bg-creme text-vert text-sm font-medium rounded-full hover:bg-creme-dark transition-all duration-300">Autoriser et afficher la carte</button>
+              <p class="text-sm text-creme/60 max-w-xs">Vous avez désactivé la carte Google Maps dans vos préférences de confidentialité.</p>
+              <button id="mapConsentBtn" class="px-6 py-2.5 bg-creme text-vert text-sm font-medium rounded-full hover:bg-creme-dark transition-all duration-300">Réafficher la carte</button>
               <a href="https://maps.apple.com/?q=La+Guinguette+de+Bessan,+Chemin+de+l%27all%C3%A9e,+34550+Bessan" target="_blank" rel="noopener" class="text-sm text-creme/60 hover:text-creme underline underline-offset-4 transition-colors">Ouvrir dans mon application Plans</a>
             </div>
           </div>
@@ -2317,55 +2317,50 @@
 
   <!-- ============================================ -->
   <!-- CONSENTEMENT PAR SERVICE (CNIL/RGPD)         -->
-  <!-- Aucun bandeau à l'arrivée : rien n'est chargé -->
-  <!-- tant que le visiteur ne demande pas le        -->
-  <!-- service. On ne demande qu'au point d'usage.   -->
+  <!-- Aucun bandeau à l'arrivée : les services externes  -->
+  <!-- (avis, carte) sont actifs par défaut et le visiteur   -->
+  <!-- peut les couper depuis les préférences en pied de page. -->
   <!-- ============================================ -->
 
-  <!-- Pastille d'avis « maison » : 100 % locale, ne dépose aucun cookie.
-       Le vrai widget Elfsight n'est chargé qu'au clic (= consentement explicite). -->
-  <button id="avisPastille" class="fixed bottom-5 left-5 z-[70] hidden items-center gap-3 pl-4 pr-5 py-2.5 rounded-2xl border border-creme/20 shadow-xl text-left transition-all duration-300 hover:border-creme/40 hover:-translate-y-0.5" style="background:#1e2614;" aria-label="Afficher les avis clients — service Elfsight, dépose des cookies">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 text-creme/70" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9L12 3.5z"/></svg>
-    <span class="leading-tight">
-      <span class="block text-sm text-creme/85">Afficher les avis clients</span>
-      <span class="block text-xs text-creme/60 mt-0.5">Elfsight &middot; dépose des cookies</span>
-    </span>
-  </button>
-
   <!-- Panneau de préférences : ouvert uniquement à la demande, jamais imposé -->
-  <div id="prefsPanel" class="fixed bottom-5 left-5 z-[75] hidden w-[min(22rem,calc(100vw-2.5rem))] p-5 rounded-2xl border border-creme/20 shadow-2xl" style="background:#1e2614;" role="dialog" aria-label="Préférences de confidentialité">
+  <div id="prefsPanel" class="fixed bottom-24 sm:bottom-5 right-5 z-[75] hidden w-[min(22rem,calc(100vw-2.5rem))] p-5 rounded-2xl border border-creme/20 shadow-2xl" style="background:#1e2614;" role="dialog" aria-label="Préférences de confidentialité">
     <p class="font-medium text-creme mb-1">Préférences de confidentialité</p>
     <p class="text-sm text-creme/60 leading-relaxed mb-4">
-      Ce site ne charge aucun service externe tant que vous ne le demandez pas.
+      Ces services externes enrichissent le site et déposent des cookies.
+      Vous pouvez les désactiver à tout moment.
       <a href="confidentialite.html" class="underline underline-offset-4 text-creme/80 hover:text-creme">En savoir plus</a>
     </p>
-    <ul class="text-sm text-creme/70 space-y-2 mb-4">
+    <ul class="text-sm text-creme/70 space-y-3 mb-4">
       <li class="flex items-center justify-between gap-3">
         <span>Avis clients <span class="text-creme/50">(Elfsight)</span></span>
-        <span id="etatAvis" class="text-xs px-2 py-1 rounded-full border border-creme/20"></span>
+        <button id="switchAvis" type="button" role="switch" class="shrink-0 relative w-11 h-6 rounded-full border border-creme/25 transition-colors duration-300" aria-label="Activer ou désactiver les avis clients">
+          <span class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-creme transition-transform duration-300"></span>
+        </button>
       </li>
       <li class="flex items-center justify-between gap-3">
         <span>Carte <span class="text-creme/50">(Google Maps)</span></span>
-        <span id="etatMaps" class="text-xs px-2 py-1 rounded-full border border-creme/20"></span>
+        <button id="switchMaps" type="button" role="switch" class="shrink-0 relative w-11 h-6 rounded-full border border-creme/25 transition-colors duration-300" aria-label="Activer ou désactiver la carte">
+          <span class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-creme transition-transform duration-300"></span>
+        </button>
       </li>
     </ul>
     <div class="flex flex-wrap gap-2">
-      <button id="prefsReset" class="px-4 py-2 border border-creme/30 text-creme/80 text-sm rounded-full hover:bg-creme/10 transition-all duration-300">Tout désactiver</button>
       <button id="prefsClose" class="px-4 py-2 text-creme/60 text-sm rounded-full hover:text-creme transition-all duration-300">Fermer</button>
     </div>
   </div>
 
   <script>
-    // ---- Consentement par service, demandé au point d'usage ---- //
+    // ---- Services externes : actifs par défaut, désactivables ---- //
+    // Choix assumé par le client : les avis et la carte se chargent sans
+    // action du visiteur ; l'opt-out est mémorisé dans le navigateur.
     (function () {
-      var CLE_AVIS = 'lg-consent-avis';
-      var CLE_MAPS = 'lg-consent-maps';
+      var OFF_AVIS = 'lg-off-avis';
+      var OFF_MAPS = 'lg-off-maps';
 
-      function lire(c) { try { return localStorage.getItem(c) === 'granted'; } catch (e) { return false; } }
-      function accorder(c) { try { localStorage.setItem(c, 'granted'); } catch (e) {} }
-      function oublier(c) { try { localStorage.removeItem(c); } catch (e) {} }
+      function coupe(c) { try { return localStorage.getItem(c) === 'off'; } catch (e) { return false; } }
+      function couper(c) { try { localStorage.setItem(c, 'off'); } catch (e) {} }
+      function rallumer(c) { try { localStorage.removeItem(c); } catch (e) {} }
 
-      var pastille = document.getElementById('avisPastille');
       var panneau = document.getElementById('prefsPanel');
 
       /* --- Avis clients (Elfsight) --- */
@@ -2386,23 +2381,6 @@
         document.body.appendChild(s);
       }
 
-      function majPastille() {
-        if (!pastille) return;
-        if (lire(CLE_AVIS)) { pastille.classList.add('hidden'); pastille.classList.remove('flex'); }
-        else { pastille.classList.remove('hidden'); pastille.classList.add('flex'); }
-      }
-
-      if (lire(CLE_AVIS)) chargerElfsight();
-      majPastille();
-
-      // La pastille annonce le prestataire et la conséquence : le clic vaut
-      // consentement éclairé, sans étape intermédiaire.
-      if (pastille) pastille.addEventListener('click', function () {
-        accorder(CLE_AVIS);
-        majPastille();
-        chargerElfsight();
-      });
-
       /* --- Carte (Google Maps) --- */
       function chargerMaps() {
         var ph = document.getElementById('mapPlaceholder');
@@ -2419,30 +2397,58 @@
         box.replaceChild(f, ph);
       }
 
-      if (lire(CLE_MAPS)) chargerMaps();
+      // Chargement par défaut, sauf refus mémorisé
+      if (!coupe(OFF_AVIS)) chargerElfsight();
+      if (!coupe(OFF_MAPS)) chargerMaps();
+
+      // Bouton de l'encadré de repli : réactive la carte sur place
       var mapBtn = document.getElementById('mapConsentBtn');
       if (mapBtn) mapBtn.addEventListener('click', function () {
-        accorder(CLE_MAPS);
+        rallumer(OFF_MAPS);
         chargerMaps();
       });
 
       /* --- Panneau de préférences (jamais affiché spontanément) --- */
-      function majEtats() {
-        var a = document.getElementById('etatAvis');
-        var m = document.getElementById('etatMaps');
-        if (a) a.textContent = lire(CLE_AVIS) ? 'Activé' : 'Non chargé';
-        if (m) m.textContent = lire(CLE_MAPS) ? 'Activé' : 'Non chargé';
+      // Les interrupteurs sont peints en JS pour rester alignés sur l'état réel
+      function peindre(btn, actif) {
+        if (!btn) return;
+        btn.setAttribute('aria-checked', actif ? 'true' : 'false');
+        btn.style.background = actif ? '#FFEFD6' : 'transparent';
+        var pion = btn.firstElementChild;
+        if (pion) {
+          pion.style.transform = actif ? 'translateX(20px)' : 'translateX(0)';
+          pion.style.background = actif ? '#2C381E' : 'rgba(255,239,214,0.5)';
+        }
       }
-      function ouvrirPanneau() {
-        if (!panneau) return;
-        majEtats();
-        panneau.classList.remove('hidden');
-        if (pastille) { pastille.classList.add('hidden'); pastille.classList.remove('flex'); }
+      var swAvis = document.getElementById('switchAvis');
+      var swMaps = document.getElementById('switchMaps');
+      function majSwitches() {
+        peindre(swAvis, !coupe(OFF_AVIS));
+        peindre(swMaps, !coupe(OFF_MAPS));
       }
-      function fermerPanneau() {
-        if (panneau) panneau.classList.add('hidden');
-        majPastille();
+      majSwitches();
+
+      // Couper exige un rechargement : un script tiers déjà exécuté ne se retire pas
+      function basculer(cle, etaitActif) {
+        if (etaitActif) {
+          couper(cle);
+          try {
+            [localStorage, sessionStorage].forEach(function (s) {
+              Object.keys(s).forEach(function (k) { if (/elfsight|eapps/i.test(k)) s.removeItem(k); });
+            });
+          } catch (e) {}
+          window.location.reload();
+        } else {
+          rallumer(cle);
+          majSwitches();
+          if (cle === OFF_AVIS) chargerElfsight(); else chargerMaps();
+        }
       }
+      if (swAvis) swAvis.addEventListener('click', function () { basculer(OFF_AVIS, !coupe(OFF_AVIS)); });
+      if (swMaps) swMaps.addEventListener('click', function () { basculer(OFF_MAPS, !coupe(OFF_MAPS)); });
+
+      function ouvrirPanneau() { if (panneau) { majSwitches(); panneau.classList.remove('hidden'); } }
+      function fermerPanneau() { if (panneau) panneau.classList.add('hidden'); }
 
       var gerer = document.getElementById('gererCookies');
       if (gerer) gerer.addEventListener('click', function (e) { e.preventDefault(); ouvrirPanneau(); });
@@ -2450,17 +2456,8 @@
 
       var close = document.getElementById('prefsClose');
       if (close) close.addEventListener('click', fermerPanneau);
-
-      var reset = document.getElementById('prefsReset');
-      if (reset) reset.addEventListener('click', function () {
-        oublier(CLE_AVIS);
-        oublier(CLE_MAPS);
-        try { // on retire aussi ce que les services avaient posé
-          [localStorage, sessionStorage].forEach(function (s) {
-            Object.keys(s).forEach(function (k) { if (/elfsight|eapps/i.test(k)) s.removeItem(k); });
-          });
-        } catch (e) {}
-        window.location.reload();
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && panneau && !panneau.classList.contains('hidden')) fermerPanneau();
       });
     })();
   </script>
@@ -2636,10 +2633,14 @@
           gsap.ticker.lagSmoothing(0);
 
           // Smooth scroll for anchor links
+          // On ignore les ancres vides (« # »), utilisées comme simples boutons :
+          // querySelector('#') lève une SyntaxError et casse la chaîne de handlers.
           document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
+              const href = anchor.getAttribute('href');
+              if (!href || href === '#') return;
               e.preventDefault();
-              const target = document.querySelector(anchor.getAttribute('href'));
+              const target = document.querySelector(href);
               if (target) lenis.scrollTo(target, { offset: -120 });
             });
           });
