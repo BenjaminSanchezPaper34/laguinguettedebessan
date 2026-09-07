@@ -42,4 +42,6 @@ Allow: /
 
 # Résumé structuré du site pour les LLM : https://www.guinguette-bessan.fr/llms.txt
 
+# Clé IndexNow : https://www.guinguette-bessan.fr/0bf37ce4f63521ae70725c7f8274cbc1.txt
+
 Sitemap: https://www.guinguette-bessan.fr/sitemap.xml

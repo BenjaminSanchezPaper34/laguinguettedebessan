@@ -16,6 +16,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"/>
   <meta name="theme-color" content="#2C381E"/>
+  <meta name="msvalidate.01" content="C6F5FF577D8503325D28E00606FC0D7C"/>
 
   <!-- Geo tags pour le référencement local -->
   <meta name="geo.region" content="FR-34"/>
@@ -86,17 +87,7 @@
         "closes": "22:00"
       }
     ],
-    "specialOpeningHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "validFrom": "2026-09-01",
-        "validThrough": "2026-09-01",
-        "opens": "00:00",
-        "closes": "00:00",
-        "description": "Fermeture exceptionnelle"
-      }
-    ],
-    "dateModified": "2026-09-02",
+    "dateModified": "2026-09-07",
     "priceRange": "€€",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Credit Card",
@@ -186,7 +177,7 @@
     },
     "sameAs": [
       "https://www.instagram.com/guinguettedebessan/",
-      "https://www.facebook.com/La-guinguette-de-Bessan-officiel-236629180448376"
+      "https://www.facebook.com/people/La-Guinguette-de-Bessan/100070884499704/"
     ],
     "amenityFeature": [
       {"@type": "LocationFeatureSpecification", "name": "Terrasse", "value": true},
@@ -736,6 +727,11 @@
       .scroll-indicator { animation: none; }
     }
   </style>
+
+  <!-- Mesure d'audience Vercel : aucun cookie, aucune donnée personnelle,
+       donc exemptée de consentement (CNIL) — chargée sans condition. -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -745,11 +741,6 @@
   <!-- Bandeau ouverture saison (auto-masqué après la date) -->
   <div id="seasonBanner" class="fixed top-0 left-0 w-full z-[60] bg-creme text-vert text-center text-xs md:text-sm font-medium py-2 px-4 tracking-wider hidden">
     <span class="uppercase">Ouverture de la saison</span> &mdash; le 14 mai 2026
-  </div>
-
-  <!-- Bandeau fermeture exceptionnelle (auto-retiré une fois la date passée) -->
-  <div id="closureBanner" class="fixed top-0 left-0 w-full z-[60] bg-creme text-vert text-center text-xs md:text-sm font-medium py-2 px-4 tracking-wider hidden">
-    <span class="uppercase">Fermeture exceptionnelle</span> &mdash; mardi 1<sup>er</sup> septembre. Nous vous retrouvons dès mercredi&nbsp;!
   </div>
 
   <!-- Skip to content (accessibilité) -->
@@ -827,7 +818,7 @@
         <a href="https://www.instagram.com/guinguettedebessan/" target="_blank" rel="noopener" class="opacity-60 hover:opacity-100 transition-opacity">
           <img src="images/instagram.svg" alt="Instagram" class="w-6 h-6"/>
         </a>
-        <a href="https://www.facebook.com/La-guinguette-de-Bessan-officiel-236629180448376" target="_blank" rel="noopener" class="opacity-60 hover:opacity-100 transition-opacity">
+        <a href="https://www.facebook.com/people/La-Guinguette-de-Bessan/100070884499704/" target="_blank" rel="noopener" class="opacity-60 hover:opacity-100 transition-opacity">
           <img src="images/facebook-laguinguette.svg" alt="Facebook" class="w-3 h-6"/>
         </a>
       </div>
@@ -2157,11 +2148,7 @@
               <p>Midi &mdash; 12h00 à 14h00</p>
               <p>Soir &mdash; 18h00 à 22h00</p>
             </div>
-            <p class="text-sm text-creme/60 mt-2">Ouvert tout l'été</p>
-            <!-- Fermeture exceptionnelle (auto-retirée une fois la date passée) -->
-            <p class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-creme/25 bg-creme/[0.06] text-sm text-creme/80 hidden" id="closureNote">
-              <span aria-hidden="true">&bull;</span> Fermé exceptionnellement le mardi 1<sup>er</sup> septembre
-            </p>
+            <p class="text-sm text-creme/60 mt-2">Ouvert tous les jours en saison</p>
           </div>
 
           <!-- Téléphone -->
@@ -2178,7 +2165,7 @@
                 <img src="images/instagram.svg" alt="" class="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity"/>
                 <span class="text-sm">Instagram</span>
               </a>
-              <a href="https://www.facebook.com/La-guinguette-de-Bessan-officiel-236629180448376" target="_blank" rel="noopener" class="flex items-center gap-2 text-creme/60 hover:text-creme transition-colors group">
+              <a href="https://www.facebook.com/people/La-Guinguette-de-Bessan/100070884499704/" target="_blank" rel="noopener" class="flex items-center gap-2 text-creme/60 hover:text-creme transition-colors group">
                 <img src="images/facebook-laguinguette.svg" alt="" class="w-2.5 h-5 opacity-50 group-hover:opacity-100 transition-opacity"/>
                 <span class="text-sm">Facebook</span>
               </a>
@@ -2499,9 +2486,11 @@
       // Un seul bandeau à la fois : le premier de la liste encore valable gagne.
       const navbar = document.getElementById('navbar');
       const maintenant = new Date();
+      // Pour annoncer quelque chose : ajouter le <div> dans la page (modèle :
+      // #seasonBanner) et une entrée ici. Une annonce périmée doit être retirée
+      // de la SOURCE, pas seulement masquée : les crawlers IA n'exécutent pas
+      // de JavaScript et liraient un texte faux.
       const annonces = [
-        // Fermeture exceptionnelle du mardi 1er septembre 2026 (visible jusqu'au 2 sept. 00h00)
-        { id: 'closureBanner', jusquA: '2026-09-02T00:00:00' },
         // Ouverture de la saison (visible tant que la saison n'a pas commencé)
         { id: 'seasonBanner', jusquA: '2026-05-14T00:00:00' },
       ];
@@ -2514,13 +2503,6 @@
           break; // un seul bandeau affiché, pas de cumul
         }
         el.remove();
-      }
-
-      // Mention de fermeture dans le bloc horaires (même échéance que le bandeau)
-      const closureNote = document.getElementById('closureNote');
-      if (closureNote) {
-        if (maintenant < new Date('2026-09-02T00:00:00')) closureNote.classList.remove('hidden');
-        else closureNote.remove();
       }
 
       // ---- Language switcher ---- //
@@ -2886,6 +2868,41 @@
       initAnimations();
 
     });
+  </script>
+
+
+  <!-- ============================================ -->
+  <!-- ÉVÉNEMENTS PAPER34                           -->
+  <!-- Ce qui relie une visite à un appel réel.     -->
+  <!-- Délégué : aucun attribut à poser sur les     -->
+  <!-- liens, rien à maintenir quand la page bouge. -->
+  <!-- ============================================ -->
+  <script>
+    (function () {
+      function suivre(nom, position) {
+        if (typeof window.va !== 'function') return;
+        window.va('event', { name: nom, data: { position: position || 'page' } });
+      }
+      // D'où vient le clic : sert à comparer les CTA entre eux
+      function situer(el) {
+        if (el.closest('nav')) return 'nav';
+        if (el.closest('footer')) return 'footer';
+        if (el.closest('#mobileMenu')) return 'menu-mobile';
+        var sec = el.closest('section[id]');
+        return sec ? sec.id : 'page';
+      }
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href]');
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        var ou = situer(a);
+        if (href.indexOf('tel:') === 0) suivre('reservation-tel', ou);
+        else if (/maps\.(apple|google)\.com/.test(href)) suivre('itineraire', ou);
+        else if (/instagram\.com/.test(href)) suivre('instagram', ou);
+        else if (/facebook\.com/.test(href)) suivre('facebook', ou);
+        else if (/paper34\.fr\/galerie/.test(href)) suivre('galerie-photos', ou);
+      }, true);
+    })();
   </script>
 
 </body>
