@@ -1,0 +1,374 @@
+{
+  "domaine": "guinguette-bessan.fr",
+  "periode": {
+    "debut": "2026-08-14",
+    "fin": "2026-09-11",
+    "jours": 28
+  },
+  "total": {
+    "clicks": 334,
+    "impressions": 2570,
+    "ctr": 0.12996108949416343,
+    "position": 2.6774319066147863
+  },
+  "requetes": [
+    {
+      "keys": [
+        "la guinguette de bessan"
+      ],
+      "clicks": 84,
+      "impressions": 321,
+      "ctr": 0.2616822429906542,
+      "position": 1.0778816199376946
+    },
+    {
+      "keys": [
+        "guinguette bessan"
+      ],
+      "clicks": 73,
+      "impressions": 219,
+      "ctr": 0.3333333333333333,
+      "position": 1
+    },
+    {
+      "keys": [
+        "guinguette de bessan"
+      ],
+      "clicks": 23,
+      "impressions": 108,
+      "ctr": 0.21296296296296297,
+      "position": 1.0092592592592593
+    },
+    {
+      "keys": [
+        "la guinguette bessan"
+      ],
+      "clicks": 23,
+      "impressions": 63,
+      "ctr": 0.36507936507936506,
+      "position": 1.2063492063492063
+    },
+    {
+      "keys": [
+        "restaurant bessan"
+      ],
+      "clicks": 11,
+      "impressions": 149,
+      "ctr": 0.0738255033557047,
+      "position": 2.0201342281879198
+    },
+    {
+      "keys": [
+        "menu de la guinguette de bessan"
+      ],
+      "clicks": 9,
+      "impressions": 87,
+      "ctr": 0.10344827586206896,
+      "position": 1.839080459770115
+    },
+    {
+      "keys": [
+        "la guinguette à bessan"
+      ],
+      "clicks": 5,
+      "impressions": 9,
+      "ctr": 0.5555555555555556,
+      "position": 1
+    },
+    {
+      "keys": [
+        "la guinguette de bessan menu"
+      ],
+      "clicks": 4,
+      "impressions": 13,
+      "ctr": 0.3076923076923077,
+      "position": 1.6923076923076923
+    },
+    {
+      "keys": [
+        "guiguette bessan"
+      ],
+      "clicks": 3,
+      "impressions": 6,
+      "ctr": 0.5,
+      "position": 1
+    },
+    {
+      "keys": [
+        "restaurant la guinguette bessan"
+      ],
+      "clicks": 3,
+      "impressions": 13,
+      "ctr": 0.23076923076923078,
+      "position": 1.0769230769230769
+    },
+    {
+      "keys": [
+        "bessan guinguette"
+      ],
+      "clicks": 2,
+      "impressions": 3,
+      "ctr": 0.6666666666666666,
+      "position": 1
+    },
+    {
+      "keys": [
+        "guingette bessan"
+      ],
+      "clicks": 2,
+      "impressions": 7,
+      "ctr": 0.2857142857142857,
+      "position": 1
+    },
+    {
+      "keys": [
+        "guinguette a bessan"
+      ],
+      "clicks": 2,
+      "impressions": 5,
+      "ctr": 0.4,
+      "position": 1
+    },
+    {
+      "keys": [
+        "la guiguette de bessan"
+      ],
+      "clicks": 2,
+      "impressions": 4,
+      "ctr": 0.5,
+      "position": 1.25
+    },
+    {
+      "keys": [
+        "la guinguette bessan 34"
+      ],
+      "clicks": 2,
+      "impressions": 2,
+      "ctr": 1,
+      "position": 1
+    },
+    {
+      "keys": [
+        "resto bessan"
+      ],
+      "clicks": 2,
+      "impressions": 10,
+      "ctr": 0.2,
+      "position": 2.5
+    },
+    {
+      "keys": [
+        "bessan la guinguette"
+      ],
+      "clicks": 1,
+      "impressions": 4,
+      "ctr": 0.25,
+      "position": 1
+    },
+    {
+      "keys": [
+        "brasserie bessan"
+      ],
+      "clicks": 1,
+      "impressions": 5,
+      "ctr": 0.2,
+      "position": 2.6
+    },
+    {
+      "keys": [
+        "ginguette bessan"
+      ],
+      "clicks": 1,
+      "impressions": 3,
+      "ctr": 0.3333333333333333,
+      "position": 1
+    },
+    {
+      "keys": [
+        "guinguette bessan menu"
+      ],
+      "clicks": 1,
+      "impressions": 5,
+      "ctr": 0.2,
+      "position": 1
+    },
+    {
+      "keys": [
+        "guinguette de bessan menu"
+      ],
+      "clicks": 1,
+      "impressions": 5,
+      "ctr": 0.2,
+      "position": 1
+    },
+    {
+      "keys": [
+        "la guingette bessan"
+      ],
+      "clicks": 1,
+      "impressions": 3,
+      "ctr": 0.3333333333333333,
+      "position": 1
+    },
+    {
+      "keys": [
+        "la guingette de bessan"
+      ],
+      "clicks": 1,
+      "impressions": 6,
+      "ctr": 0.16666666666666666,
+      "position": 1
+    },
+    {
+      "keys": [
+        "la guinguette"
+      ],
+      "clicks": 1,
+      "impressions": 26,
+      "ctr": 0.038461538461538464,
+      "position": 4.153846153846153
+    },
+    {
+      "keys": [
+        "la guinguette autour de moi"
+      ],
+      "clicks": 1,
+      "impressions": 7,
+      "ctr": 0.14285714285714285,
+      "position": 5
+    }
+  ],
+  "pages": [
+    {
+      "keys": [
+        "https://guinguette-bessan.fr/"
+      ],
+      "clicks": 213,
+      "impressions": 2277,
+      "ctr": 0.09354413702239789,
+      "position": 2.500219587176109
+    },
+    {
+      "keys": [
+        "https://www.guinguette-bessan.fr/"
+      ],
+      "clicks": 129,
+      "impressions": 1616,
+      "ctr": 0.07982673267326733,
+      "position": 4.243193069306931
+    },
+    {
+      "keys": [
+        "https://www.guinguette-bessan.fr/confidentialite.html"
+      ],
+      "clicks": 0,
+      "impressions": 318,
+      "ctr": 0,
+      "position": 5.088050314465409
+    },
+    {
+      "keys": [
+        "https://www.guinguette-bessan.fr/mentions-legales.html"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 5.875
+    }
+  ],
+  "appareils": [
+    {
+      "keys": [
+        "MOBILE"
+      ],
+      "clicks": 289,
+      "impressions": 2196,
+      "ctr": 0.13160291438979962,
+      "position": 2.4722222222222223
+    },
+    {
+      "keys": [
+        "DESKTOP"
+      ],
+      "clicks": 36,
+      "impressions": 324,
+      "ctr": 0.1111111111111111,
+      "position": 4.095679012345679
+    },
+    {
+      "keys": [
+        "TABLET"
+      ],
+      "clicks": 9,
+      "impressions": 50,
+      "ctr": 0.18,
+      "position": 2.5
+    }
+  ],
+  "pays": [
+    {
+      "keys": [
+        "fra"
+      ],
+      "clicks": 318,
+      "impressions": 2501,
+      "ctr": 0.12714914034386246,
+      "position": 2.6669332267093164
+    },
+    {
+      "keys": [
+        "deu"
+      ],
+      "clicks": 4,
+      "impressions": 12,
+      "ctr": 0.3333333333333333,
+      "position": 2.25
+    },
+    {
+      "keys": [
+        "bel"
+      ],
+      "clicks": 3,
+      "impressions": 10,
+      "ctr": 0.3,
+      "position": 1.5
+    },
+    {
+      "keys": [
+        "che"
+      ],
+      "clicks": 3,
+      "impressions": 13,
+      "ctr": 0.23076923076923078,
+      "position": 3.3846153846153846
+    },
+    {
+      "keys": [
+        "nld"
+      ],
+      "clicks": 3,
+      "impressions": 10,
+      "ctr": 0.3,
+      "position": 1.8
+    }
+  ],
+  "sitemaps": [
+    {
+      "path": "https://www.guinguette-bessan.fr/sitemap.xml",
+      "lastSubmitted": "2026-09-07T08:02:09.319Z",
+      "isPending": false,
+      "isSitemapsIndex": false,
+      "type": "sitemap",
+      "lastDownloaded": "2026-09-10T10:27:10.735Z",
+      "warnings": "0",
+      "errors": "0",
+      "contents": [
+        {
+          "type": "web",
+          "submitted": "3",
+          "indexed": "0"
+        }
+      ]
+    }
+  ]
+}

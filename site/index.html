@@ -91,7 +91,7 @@
         "validThrough": "2026-09-25"
       }
     ],
-    "dateModified": "2026-09-14",
+    "dateModified": "2026-09-26",
     "priceRange": "€€",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Credit Card",
@@ -743,10 +743,6 @@
   <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
   <!-- Bandeau ouverture saison (auto-masqué après la date) -->
-  <div id="closingBanner" class="fixed top-0 left-0 w-full z-[60] bg-creme text-vert text-center text-xs md:text-sm font-medium py-2 px-4 tracking-wider hidden">
-    <span class="uppercase">Fin de saison</span> &mdash; dernier service le vendredi 25 septembre au soir. Réservez votre table&nbsp;!
-  </div>
-
   <div id="offSeasonBanner" class="fixed top-0 left-0 w-full z-[60] bg-creme text-vert text-center text-xs md:text-sm font-medium py-2 px-4 tracking-wider hidden">
     <span class="uppercase">Fermé pour la saison</span> &mdash; merci à tous, nous vous retrouvons la saison prochaine.
   </div>
@@ -2157,7 +2153,7 @@
               <p>Soir &mdash; 18h00 à 22h00</p>
             </div>
             <p class="text-sm text-creme/60 mt-2">Ouvert tous les jours en saison</p>
-            <p class="text-sm text-creme/60">Fin de saison 2026 &mdash; vendredi 25 septembre</p>
+            <p class="text-sm text-creme/60">Fermé pour l'hiver &mdash; saison 2026 terminée le 25 septembre</p>
           </div>
 
           <!-- Téléphone -->
@@ -2496,14 +2492,12 @@
       const navbar = document.getElementById('navbar');
       const maintenant = new Date();
       // Pour annoncer quelque chose : ajouter le <div> dans la page (modèle :
-      // #closingBanner) et une entrée ici. `aPartirDe` et `jusquA` sont
+      // #offSeasonBanner) et une entrée ici. `aPartirDe` et `jusquA` sont
       // facultatifs — une annonce sans borne est permanente.
       // Une annonce périmée doit être retirée de la SOURCE, pas seulement
       // masquée : les crawlers IA n'exécutent pas de JavaScript et liraient
       // un texte faux. Le texte laissé en dur doit rester vrai en permanence.
       const annonces = [
-        // Fin de saison 2026 : dernier service le vendredi 25 septembre au soir
-        { id: 'closingBanner', jusquA: '2026-09-26T00:00:00' },
         // Hors saison : prend le relais dès le lendemain, jusqu'à la réouverture
         { id: 'offSeasonBanner', aPartirDe: '2026-09-26T00:00:00' },
       ];
